@@ -1,0 +1,26 @@
+<h1>Listaxe de Pastes</h1>
+
+<table>
+  <tr>
+    <th>Content</th>
+    <th>Language</th>
+  </tr>
+
+<% for paste in @pastes %>
+  <tr>
+    <td><%=h paste.content %></td>
+    <td><%=h Language.find(paste.language_id).name %></td>
+    <td><%= link_to 'Show', [:admin,paste] %></td>
+    <td><%= link_to 'Edit', edit_admin_paste_path(paste) %></td>
+    <td><%= link_to 'Destroy', [:admin,paste], :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New paste', new_paste_path %>
+
+<% content_for :lateral do %>
+  <%= render :partial => "layouts/stats_langs" %>
+<% end %>

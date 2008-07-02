@@ -1,0 +1,187 @@
+** Daemonized, any open files are closed.  Look at /Users/fran/pastie-mabishu/tmp/pids/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3000
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel 1.1.5 available at 0.0.0.0:3000
+** Writing PID file to /Users/fran/pastie-mabishu/tmp/pids/mongrel.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at /Users/fran/pastie-mabishu/tmp/pids/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3000
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel 1.1.5 available at 0.0.0.0:3000
+** Writing PID file to /Users/fran/pastie-mabishu/tmp/pids/mongrel.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at /Users/fran/pastie-mabishu/tmp/pids/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3000
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel 1.1.5 available at 0.0.0.0:3000
+** Writing PID file to /Users/fran/pastie-mabishu/tmp/pids/mongrel.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at /Users/fran/pastie-mabishu/tmp/pids/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3000
+** Starting Rails with development environment...
+/usr/local/lib/ruby/site_ruby/1.8/rubygems.rb:523:in `report_activate_error': Could not find RubyGem mislav-will_paginate (~> 2.2) (Gem::LoadError)
+	from /usr/local/lib/ruby/site_ruby/1.8/rubygems.rb:131:in `activate'
+	from /usr/local/lib/ruby/site_ruby/1.8/rubygems.rb:49:in `gem'
+	from /Users/fran/pastie-mabishu/config/environment.rb:9
+	from /Users/fran/pastie-mabishu/config/../vendor/rails/railties/lib/initializer.rb:91:in `run'
+	from /Users/fran/pastie-mabishu/config/environment.rb:6
+	from /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+	from /usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:147:in `rails'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:113:in `cloaker_'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:149:in `call'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:149:in `listener'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:99:in `cloaker_'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:50:in `call'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:50:in `initialize'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:84:in `new'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:84:in `run'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/command.rb:212:in `run'
+	from /usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
+	from /usr/local/bin/mongrel_rails:19:in `load'
+	from /usr/local/bin/mongrel_rails:19
+** Daemonized, any open files are closed.  Look at /Users/fran/pastie-mabishu/tmp/pids/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3000
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel 1.1.5 available at 0.0.0.0:3000
+** Writing PID file to /Users/fran/pastie-mabishu/tmp/pids/mongrel.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at /Users/fran/pastie-mabishu/tmp/pids/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3000
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel 1.1.5 available at 0.0.0.0:3000
+** Writing PID file to /Users/fran/pastie-mabishu/tmp/pids/mongrel.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at /Users/fran/pastie-mabishu/tmp/pids/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3000
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel 1.1.5 available at 0.0.0.0:3000
+** Writing PID file to /Users/fran/pastie-mabishu/tmp/pids/mongrel.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at /Users/fran/pastie-mabishu/tmp/pids/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3000
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel 1.1.5 available at 0.0.0.0:3000
+** Writing PID file to /Users/fran/pastie-mabishu/tmp/pids/mongrel.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at /Users/fran/pastie-mabishu/tmp/pids/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3000
+** Starting Rails with development environment...
+** Daemonized, any open files are closed.  Look at /Users/fran/pastie-mabishu/tmp/pids/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3000
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel 1.1.5 available at 0.0.0.0:3000
+** Writing PID file to /Users/fran/pastie-mabishu/tmp/pids/mongrel.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at /Users/fran/pastie-mabishu/tmp/pids/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3000
+** Starting Rails with development environment...
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel 1.1.5 available at 0.0.0.0:3000
+** Writing PID file to /Users/fran/pastie-mabishu/tmp/pids/mongrel.pid
+** TERM signal received.
+** Daemonized, any open files are closed.  Look at /Users/fran/pastie-mabishu/tmp/pids/mongrel.pid and log/mongrel.log for info.
+** Starting Mongrel listening at 0.0.0.0:3000
+** Starting Rails with development environment...
+no such file to load -- ultraviolet
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/Users/fran/pastie-mabishu/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:509:in `require'
+/Users/fran/pastie-mabishu/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:354:in `new_constants_in'
+/Users/fran/pastie-mabishu/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:509:in `require'
+/Users/fran/pastie-mabishu/config/../vendor/rails/railties/lib/rails/gem_dependency.rb:57:in `load'
+/Users/fran/pastie-mabishu/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/inflector.rb:283:in `to_proc'
+/Users/fran/pastie-mabishu/config/../vendor/rails/railties/lib/initializer.rb:246:in `each'
+/Users/fran/pastie-mabishu/config/../vendor/rails/railties/lib/initializer.rb:246:in `load_gems'
+/Users/fran/pastie-mabishu/config/../vendor/rails/railties/lib/initializer.rb:137:in `process'
+/Users/fran/pastie-mabishu/config/../vendor/rails/railties/lib/initializer.rb:93:in `send'
+/Users/fran/pastie-mabishu/config/../vendor/rails/railties/lib/initializer.rb:93:in `run'
+/Users/fran/pastie-mabishu/config/environment.rb:6
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:147:in `rails'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:113:in `cloaker_'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:149:in `call'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:149:in `listener'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:99:in `cloaker_'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:50:in `call'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:50:in `initialize'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:84:in `new'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:84:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/command.rb:212:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
+/usr/local/bin/mongrel_rails:19:in `load'
+/usr/local/bin/mongrel_rails:19
+no such file to load -- ultraviolet
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/Users/fran/pastie-mabishu/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:509:in `require'
+/Users/fran/pastie-mabishu/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:354:in `new_constants_in'
+/Users/fran/pastie-mabishu/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:509:in `require'
+/Users/fran/pastie-mabishu/config/../vendor/rails/railties/lib/rails/gem_dependency.rb:57:in `load'
+/Users/fran/pastie-mabishu/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/inflector.rb:283:in `to_proc'
+/Users/fran/pastie-mabishu/config/../vendor/rails/railties/lib/initializer.rb:246:in `each'
+/Users/fran/pastie-mabishu/config/../vendor/rails/railties/lib/initializer.rb:246:in `load_gems'
+/Users/fran/pastie-mabishu/config/../vendor/rails/railties/lib/initializer.rb:142:in `process'
+/Users/fran/pastie-mabishu/config/../vendor/rails/railties/lib/initializer.rb:93:in `send'
+/Users/fran/pastie-mabishu/config/../vendor/rails/railties/lib/initializer.rb:93:in `run'
+/Users/fran/pastie-mabishu/config/environment.rb:6
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:147:in `rails'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:113:in `cloaker_'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:149:in `call'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:149:in `listener'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:99:in `cloaker_'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:50:in `call'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:50:in `initialize'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:84:in `new'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:84:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/command.rb:212:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
+/usr/local/bin/mongrel_rails:19:in `load'
+/usr/local/bin/mongrel_rails:19
+These gems that this application depends on are missing:
+ - ultraviolet
+Run "rake gems:install" to install them.
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel 1.1.5 available at 0.0.0.0:3000
+** Writing PID file to /Users/fran/pastie-mabishu/tmp/pids/mongrel.pid

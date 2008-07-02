@@ -1,0 +1,24 @@
+<h1>Editando página: <strong><%= @pagina.title.titleize %></strong></h1>
+
+<% form_for([:admin,@pagina]) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :content %><br />
+    <%= f.text_area :content %>
+  </p>
+  <p>
+    <%= f.label :link %><br />
+    <%= f.text_field :link %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', admin_pagina_path(@pagina) %> |
+<%= link_to 'Back', admin_paginas_path %>

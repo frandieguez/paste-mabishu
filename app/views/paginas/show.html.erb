@@ -1,0 +1,16 @@
+<% if flash[:warning] or flash[:notice] %>
+  <div id="messages" <% if flash[:warning] %>class="warning"<% end %>>
+    <%= flash[:warning] || flash[:notice] %>
+  </div>
+  <script type="text/javascript">
+    setTimeout("new Effect.Fade('messages');", 2000)
+  </script>
+<% end %>
+<h1><%=h @pagina.title %></h1>
+<p>
+  <%=h @pagina.content %>
+</p>
+<% content_for :lateral do 
+	render :partial => "layouts/stats_langs"
+end %>
+<%=  %>

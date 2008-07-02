@@ -1,0 +1,15 @@
+<h3>Lenguajes <span>(totales)</span></h3>
+	<% if !@languages.blank? %>
+	<table class="stats">
+	  <% for language in @languages %>
+	    
+	    	<tr>
+				<td class="l"><%= language.name %></td>
+				<td><%= Language.count_pastes(language.name).inspect %></td>
+			</tr>
+
+	  <% end %>
+    </table>
+	<% else %>
+	  No hay estadísticas
+	<% end %>

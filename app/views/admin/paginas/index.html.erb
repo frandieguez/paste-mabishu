@@ -1,0 +1,39 @@
+<h1>Listing paginas</h1>
+
+
+<% if !@paginas.blank? %>
+<table class="listado" width=100%>
+  <tr>
+    <th>Nombre</th>
+	<th>Contenido</th>
+	<th>Link</th>
+	<th>Acciones</th>
+  </tr>
+
+	<% for pagina in @paginas %>
+	  <tr>
+	    <td><%=h pagina.title %></td>
+	    <td><%=h truncate pagina.content, 20 %></td>
+		<td><%= pagina.link %></td>
+	    <td class="acciones">
+
+	    	<table>
+				<tr>
+					<td><%= link_to (image_tag "zoom.gif"), [:admin,pagina] %></td>
+				    <td><%= link_to (image_tag "edit.jpg"), edit_admin_pagina_path(pagina) %></td>
+				    <td><%= link_to "<image src='/images/master-public-images-typus_trash.gif'/>", [:admin,pagina], :confirm => 'Are you sure?', :method => :delete %></td>
+				</tr>
+	    	</table>
+	    </td>
+	  </tr>
+	<% end %>
+	
+</table>
+<% else %>
+	<div>No hay páginas</div><!-- fin  -->
+<% end %>
+
+
+<br />
+
+<%= link_to 'New pagina', new_admin_pagina_path %>

@@ -1,0 +1,55 @@
+#Instalar onigurura para ter syntax highlighting con Ultraviolet
+
+
+$ wget http://www.geocities.jp/kosako3/oniguruma/archive/onig-5.9.1.tar.gz
+$ tar zxvf onig-5.9.1.tar.gz 
+$ cd onig-5.9.1/
+$ ./configure
+$ make
+$ sudo make install
+
+Installing Ultraviolet and dependencies
+
+Next install Ultraviolet with RubyGems:
+
+$ sudo gem install -r ultraviolet
+$ irb
+
+require 'rubygems'
+require 'uv'
+puts Uv.syntaxes.join( "\n" )
+puts Uv.themes.join( "\n" )
+input = <<HTML<<HTML
+<html>
+  <body>
+  </body>
+</html>
+HTMLHTML
+
+puts Uv.parse( input, "xhtml", "html", true, "slush_poppies")
+
+Problems
+
+You might get this error:
+
+require 'uv'
+LoadError: libonig.so.2: cannot open shared object file: No such file or directory - /usr/lib/ruby/gems/1.8/gems/oniguruma-1.1.0/lib/oregexp.so
+
+This message is a bit confusing. It means Ruby can’t find libonig.so.2, not oregexp.so as you could believe.
+
+To fix this, check if the library has been linked:
+
+$ ldconfig -p|grep libonig
+
+If the library is not linked, add the path to the directory where the file is located to /etc/ld.so.conf:
+
+/usr/local/lib
+
+include /etc/ld.so.conf.d/*.conf
+
+Then run:
+
+$ ldconfig
+
+Another way of fixing this problem would be to tell the build script to install it to /usr/lib.
+Tagged onigurama, ultraviolet, ruby, ubuntu, install, oniguruma

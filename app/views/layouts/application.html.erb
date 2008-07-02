@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head id="head">
+  	<title>Pastie</title>
+	<meta name="author" content="Fran Di&eacute;guez"/>
+	<meta name="organization" content="Mabishu St."/>
+	<meta name="keywords" content="paste, source, code, share, mabishu, <%# Language.find(:all) %>" />
+	<meta name="description" content="Pastes - web service for posting your source code" />
+	<%= stylesheet_link_tag "display" %>
+    <%= javascript_include_tag :defaults %>
+</head>
+<body>
+	<div id="topnews" style="display:none;">
+		<p>
+			 Pastie now <a href="http://pastie.caboo.se/8763" class="subtle">auto-senses</a> if line-wrap is a bad or good idea.  <a href="http://beast.caboo.se/forums/4">Feedback?</a>
+		</p>
+	</div>
+
+	<div id="header">
+
+		<ul id="nav">
+			<li class="hot"><%= link_to "Nova", new_paste_path %></li>
+			<li style="display:none;" class="loggedinonly"><a href="" id="mine_nav_link">Miñas</a></li>
+			<li><%= link_to "Todas", pastes_path %></li>
+			<li><a href="#" onclick="$('search').show(); $('search_box').focus();">Buscar</a>
+				</li>
+			<li id="search" style="display:none;">
+				<form action="/search">
+					<input type="text" style="" size="15" id="search_box" name="q" value="">
+				</form>
+			</li>
+
+			<li class='active'><a href="/why/">Why</a></li>
+			<li ><a href="/help/">Help</a></li>
+		
+			<li class="login loggedinonly" style="display:none;" id="login_nick"></li>
+		
+		</ul>
+
+	  <script language="javascript">logged_in_setup();</script>
+
+		<h1>
+			<%= image_tag "pastie.gif" %>
+			Paste
+			<span class="sub" style="color:#777">
+				<%= link_to "Mira las categorías", languages_path %>
+				o <a style="color:cf6; text-decoration:underline" href="http://www.mabishu.com/blog">o lee mi blog</a>
+			</span>
+		</h1>
+	
+	
+	</div>
+
+	<!-- <div id="news">
+	<p style="margin-bottom:0;">Now powered by <a href="http://www.sphinxsearch.com/">Sphinx</a>... Search doesn't suck anymore. :-)  Give it a spin.</p> 
+	</div> -->
+
+	<div id="container">
+
+
+		<div id="content">
+			<%= yield %>
+		</div><!-- content -->
+	
+		<div id="right">
+			
+			<%= yield(:lateral) %>
+		</div><!-- right -->
+	
+		<br style="clear:both;" />
+	
+	</div><!-- container -->
+
+	<div id="footer">
+		<p class="legal">
+			<a href="/legal/" style="color:#369;">Legal</a>
+		</p>
+		<p class="disclaim">
+			<strong>Usa Paste para salvar la humanidad,<br /> no andes a tocar los webos!</strong>
+		</p>
+		<p class="credit">
+		  Creado por <a href="http://www.mabishu.com/">Fran Di&eacute;guez</a> basado en <a href="http://pastie.org/">pastie.org</a>
+		</p>
+    	
+		<br style="clear:both;" />
+	</div>
+</body>
+</html>

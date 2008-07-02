@@ -1,0 +1,13 @@
+<p>
+  <b>Title:</b>
+  <%=h @pagina.title %>
+</p>
+
+<p>
+  <b>Content:</b>
+  <%=h @pagina.content %>
+</p>
+
+
+<%= link_to 'Edit', edit_admin_pagina_path(@pagina) %> |
+<%= link_to 'Back', admin_paginas_path %>

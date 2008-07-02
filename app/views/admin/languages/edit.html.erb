@@ -1,0 +1,24 @@
+<h1>Editing language</h1>
+
+<% form_for([:admin,@language]) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </p>
+  <p>
+    <%= f.label :mimetype %><br />
+    <%= f.text_field :mimetype %>
+  </p>
+  <p>
+    <%= f.label :extension %><br />
+    <%= f.text_field :extension %>
+  </p>
+  <p>
+    <%= f.submit "Update" %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @language %> |
+<%= link_to 'Back', languages_path %>

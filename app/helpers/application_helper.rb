@@ -1,0 +1,36 @@
+# Methods added to this helper will be available to all templates in the application.
+module ApplicationHelper
+  
+  def hace_tiempo_en_palabras(time)
+    @ahora = Time.now
+    distance_in_minutes = ((time.to_time - Time.now).abs/60).round
+    case distance_in_minutes
+      when 0..1   then "1 minuto"
+      when 2..45  then "#{distance_in_minutes} minutos"
+      when 46..70 then "una hora"
+      when 70..120 then "poco mas de una hora"
+      when 120..10000 then "#{distance_in_minutes/60} horas"
+      when 10000.10100 then "una semana"
+      else "hace mucho tiempo"
+    end
+  end
+  def stat_count_helper
+    @languages = Languages.find :all, :order => "name"
+    
+    
+    salida = "<h3>Lenguajes <span>(totales)</span></h3>"
+      if !@languages.blank?
+        salida += "<table class=\"stats\">\n"
+        for language in @languages
+          salida += "\t<tr>\n
+            <td class=\"l\">#{language.name}</td>\n
+            <td>#{ Language.count_pastes(language.name).inspect }</td>\n
+          </tr>\n"
+        end
+        salida += "</table>\n"
+      else
+        salida = "No hay estadísticas"
+      end
+    
+  end
+end

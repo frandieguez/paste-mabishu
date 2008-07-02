@@ -1,0 +1,18 @@
+<h1>Resultados de la búsqueda</h1>
+<% if params[:q].blank? %>
+	No has proporcionado una cadena de búsqueda
+<% else %>
+
+	<% if !@pastes.blank? %>
+	  <% for paste in @pastes %>
+	    <%= paste.content %>
+	  <% end %>
+	<% else %>
+		<div>
+			No se encontró ninguno
+		</div><!-- fin  -->
+	<% end %>
+
+
+<%end %>
+

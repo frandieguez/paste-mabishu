@@ -1,0 +1,24 @@
+<% form_for(@paste) do |f| %>
+  <%= f.error_messages %>
+	  <span class="legend">
+					## mark a section (Learn more) 
+	  </span>
+	<div style="float:right; clear:left; margin-bottom:5px;">
+		<label>Lenguaje: </label>
+		<select name="paste[language_id]" id="paste_parser">
+			<%= options_from_collection_for_select(@languages, "id", "name")  %>
+		</select>
+	</div><!-- fin name -->
+  <p>
+    <%= f.text_area :content, :html_options =>{:class=> "pastebox"} %>
+  </p>
+  <p>
+    <%= f.submit "Create" %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', pastes_path %>
+<% content_for :lateral do %>
+  <%= render :partial => "layouts/stats_langs" %>
+	
+<% end %>

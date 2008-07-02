@@ -1,0 +1,40 @@
+<h1>Gestión de lenguajes</h1>
+
+<table width="100%" class="listado">
+  <tr class="header">
+    <th >Nombre</th>
+	<th>MIME-Type</th>
+	<th>Extensión</th>
+	<th colspan=3 class="acciones">Acciones</th>
+  </tr>
+
+<% for language in @languages %>
+  <tr>
+    <td><%=h language.name %></td>
+	<td><%= h language.mimetype %></td>
+	<td><%= h language.extension %></td>
+    <td class="acciones">
+    	<table>
+			<tr>
+				<td><%= link_to (image_tag "zoom.gif"), [:admin,language] %></td>
+			    <td><%= link_to (image_tag "edit.jpg"), edit_admin_language_path(language) %></td>
+			    <td><%= link_to "<image src='/images/master-public-images-typus_trash.gif'/>", [:admin,language], :confirm => 'Are you sure?', :method => :delete %></td>
+			</tr>
+    	</table>
+    </td>
+  </tr>
+<% end %>
+</table>
+<br>
+<div> Añadir un nuevo lenguaje:
+	<% form_for([:admin,@language], html_options={:style=> "display:inline"}) do |f| %>
+  		<%= f.error_messages %>
+		<%= f.text_field :name %>
+    	<%= f.submit "Create" %>
+	<% end %>
+</div><!-- fin  -->
+
+<% content_for :lateral do %>
+  <%= render :partial => "layouts/stats_langs" %>
+	
+<% end %>

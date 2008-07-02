@@ -1,0 +1,33 @@
+<p>
+  <b>Content:</b>
+  <%=h @paste.content %>
+</p>
+
+<p>
+  <b>Language:</b>
+  <%=h  %>
+</p>
+
+<% content_for :lateral do %>
+  <label>Pegado hace</label><br />
+  <span class="typo_date" title="Wed, 02 Jul 2008 20:17:42 GMT" id='paste_date'><%= hace_tiempo_en_palabras(@paste.created_at) %><br /></span>
+  <script language="javascript">
+  	e=$('paste_date');
+  	e.innerHTML=get_local_time_for_date(e.title);
+  </script>
+
+  </p>
+	<p style="margin-top:2em; font-size:0.75em;">
+		<%= link_to "Descargar", @paste.id.to_s+"/download" %>	
+		<span class="pipe">|</span>
+		<%= link_to "Ver", formatted_paste_path(@paste,"text") %>
+	</p>
+	<p style="margin-top:2em;">
+		<a href="/pastes/<%= @paste.id %>/reply">Paste again</a>
+	</p>
+
+<%# stat_count_helper %>
+<% end %>
+
+<%= link_to 'Edit', edit_admin_paste_path(@paste) %> |
+<%= link_to 'Back', admin_pastes_path %>
