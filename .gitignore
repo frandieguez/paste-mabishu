@@ -1,0 +1,11 @@
+**/**/.DS_Store
+config/mongrel_cluster.yml
+config/database.yml
+log/*.log
+tmp/**/*
+**/*.pid
+db/*.sqlite3
+**/*/\._*
+public/cache/**
+public/cache/**/*
+**/*.sqlite3

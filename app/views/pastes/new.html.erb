@@ -3,7 +3,7 @@
 	  <span class="legend">
 					## Escolle a linguaxe, escribe o pastie e gardao 
 	  </span>
-	<div style="float:right; clear:left; margin-bottom:5px;">
+	<div style="float:right; position:absolute; top: 15px;  right:15px">
 		<label>Lenguaje: </label>
 		<select name="paste[language_id]" id="paste_parser">
 			<%= options_from_collection_for_select(@languages, "id", "name")  %>

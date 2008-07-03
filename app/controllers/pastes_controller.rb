@@ -4,7 +4,7 @@ class PastesController < ApplicationController
   # GET /pastes
   # GET /pastes.xml
   def index
-    @pastes = Paste.find(:all, :order => "created_at DESC")
+    @pastes = Paste.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 4
     @languages = Language.find :all, :order => "name"
   end
 
