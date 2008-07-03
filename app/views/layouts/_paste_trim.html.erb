@@ -1,0 +1,7 @@
+<div class="pastePreview">
+	<p class="link" style="float:left"><%= link_to "Ver más", paste %> <span>(<%= paste.content.split("\n").size %> lineas)</span><br><br>
+	<p class="when"> fai <%= hace_tiempo_en_palabras(paste.created_at) %></p>
+	<p class="content" style="margin-top:40px">	
+	<%= Uv.parse(truncate(paste.content,300), "xhtml", Language.find(paste.language_id).uv_name, true, theme) %></p>
+</p>
+</div><!-- fin  -->
