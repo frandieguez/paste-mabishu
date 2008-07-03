@@ -1,12 +1,20 @@
-<h3>Recientemente <span>posteados</span></h3>
+<h3>Recentemente <span>posteados</span></h3>
 	<% if !@languages.blank? %>
 	<% @tiempos= [1.day.ago,1.week.ago,1.month.ago,1.year.ago]  %>
 	<table class="stats">
 	  <% for tiempo in @tiempos %>
 	    
 	    	<tr>
-				<td class="l"><%= language.name %></td>
-				<td><%= Language.count_pastes(language.name).inspect %></td>
+				<td class="l">fai
+				<%= case tiempo
+				      when 1.day.ago-10.minutes .. 1.day.ago+10.minutes then "24 horas"
+				      when 1.week.ago-10.minutes .. 1.week.ago+10.minutes then "1 semana"
+				      when 1.month.ago-10.minutes .. 1.month.ago+10.minutes then "1 mes"
+				      when 1.year.ago-10.minutes .. 1.year.ago+10.minutes then "1 ano" 
+					else "defaul"    
+				    end
+			 	%></td>
+				<td><%= Paste.find( :all, :conditions => ["created_at > ? ", tiempo.to_time ]).size %></td>
 			</tr>
 
 	  <% end %>
@@ -14,11 +22,3 @@
 	<% else %>
 	  No hay estadísticas
 	<% end %>
-	
-	
-	Recent Pasting
-	Past 24 hours 	610
-	Past 7 days 	2,976
-	This month 	499
-	Last month 	12,458
-	This year 	63,587

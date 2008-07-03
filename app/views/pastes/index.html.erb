@@ -2,12 +2,7 @@
 	
 	<% if !@pastes.blank? %>
 	  <% for paste in @pastes %>
-	  	<div class="pastePreview">
-	  		<p class="link" style="float:left"><%= link_to "Ver más", paste %> <span>(<%= paste.content.split("\n").size %> lineas)</span><br><br>
-			<p class="when"> hace <%= time_ago_in_words(paste.created_at) %></p>
-			<p class="content" style="margin-top:30px">	<%= CodeRay.scan(paste.content, Language.find(paste.language_id).name.to_sym).html %></p>
-		</p>
-	  	</div><!-- fin  -->
+	  	<%= render :partial => "layouts/paste_trim", :locals => { :paste => paste, :theme => @theme } %>
 	  <% end %>
 	<% else %>
 		<div class="pastePreview">
@@ -19,5 +14,5 @@
 	<br />
 	<% content_for :lateral do %>
 	  <%= render :partial => "layouts/stats_langs" %>
-	
+	  <%= render :partial => "layouts/stats_time" %>
 	<% end %>

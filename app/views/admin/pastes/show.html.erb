@@ -1,15 +1,13 @@
 <p>
-  <b>Content:</b>
+  <b>Escrito en:</b>
+  <%=h @language %>
+</p>
+<p>
   <%=h @paste.content %>
 </p>
 
-<p>
-  <b>Language:</b>
-  <%=h  %>
-</p>
-
 <% content_for :lateral do %>
-  <label>Pegado hace</label><br />
+  <label>Pegado fai</label><br />
   <span class="typo_date" title="Wed, 02 Jul 2008 20:17:42 GMT" id='paste_date'><%= hace_tiempo_en_palabras(@paste.created_at) %><br /></span>
   <script language="javascript">
   	e=$('paste_date');

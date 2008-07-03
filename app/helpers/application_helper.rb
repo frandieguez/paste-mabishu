@@ -14,6 +14,14 @@ module ApplicationHelper
       else "hace mucho tiempo"
     end
   end
+  def tiempo_exacto(time)
+    case time
+      when 1.day.ago then "24 horas"
+      when 1.week.ago then "1 semana"
+      when 1.month.ago then "1 mes"
+      when 1.year.ago then "1 año"      
+    end
+  end
   def stat_count_helper
     @languages = Languages.find :all, :order => "name"
     

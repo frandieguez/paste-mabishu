@@ -1,24 +1,31 @@
-<h1>Editing language</h1>
+<h1>Editando a linguaxe: "<%= @language.name %>"</h1>
 
 <% form_for([:admin,@language]) do |f| %>
   <%= f.error_messages %>
 
   <p>
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :name %>&nbsp;&nbsp;Nome que se emprega na pantalla
   </p>
   <p>
     <%= f.label :mimetype %><br />
-    <%= f.text_field :mimetype %>
+    <%= f.text_field :mimetype %>&nbsp;&nbsp;MIME-Type para esta linguaxe
   </p>
   <p>
     <%= f.label :extension %><br />
-    <%= f.text_field :extension %>
+    <%= f.text_field :extension %>&nbsp;&nbsp;Extension dos arquivos de esta linguaxe
   </p>
   <p>
-    <%= f.submit "Update" %>
+    <%= f.label :uv_name %><br />
+	<select name="language[uv_name]">
+		<%- @syntaxes.each do |syntax| %><option <%= (syntax == @language.uv_name) ? "selected" : "" %> value="<%= syntax %>"><%= syntax.titleize %></option>
+			<% end -%>		
+	</select>
+  </p>
+  <p>
+    <%= f.submit "Actualizar" %>
   </p>
 <% end %>
 
-<%= link_to 'Show', @language %> |
-<%= link_to 'Back', languages_path %>
+<small style="float:right"><%= link_to 'Amosar esta linguaxe',[:admin, @language] %> |
+<%= link_to 'Voltar &aacute; lista', admin_languages_path %></small>

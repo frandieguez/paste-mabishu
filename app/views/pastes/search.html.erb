@@ -1,15 +1,16 @@
-<h1>Resultados de la búsqueda</h1>
+<h1>Resultados de la búsqueda para la cadena "<%= params[:q] %>" - <small>Se ha encontrado <%= @pastes.size %> paste</small></h1>
+
 <% if params[:q].blank? %>
 	No has proporcionado una cadena de búsqueda
 <% else %>
 
 	<% if !@pastes.blank? %>
 	  <% for paste in @pastes %>
-	    <%= paste.content %>
+	  	<%= render :partial => "layouts/paste_trim", :locals => { :paste => paste} %>
 	  <% end %>
 	<% else %>
-		<div>
-			No se encontró ninguno
+		<div class="pastePreview">
+			No hay pastes nuevos
 		</div><!-- fin  -->
 	<% end %>
 

@@ -537,12 +537,16 @@ label
 }
 
 .pastePreview pre,
-.pastePreview pre span
+.pastePreview pre span, pre
 {
 	font-family:"Bitstream Vera Sans Mono", "Monaco", "Courier", monospace;
 	font-size:9pt;
 	font-weight:normal;
+	overflow:auto;
 } 
+pre{
+	padding:15px 5px;
+}
 
 pre.textmate-source,
 pre.textmate-source pre,
@@ -681,6 +685,7 @@ tr.header{
 	background-color:#efefef;
 }
 .listado{
+	font-size:.9em;
 	border-bottom:1px solid #efefef;
 	margin-bottom:10px;
 }

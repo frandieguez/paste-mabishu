@@ -1,7 +1,7 @@
 <% form_for(@paste) do |f| %>
   <%= f.error_messages %>
 	  <span class="legend">
-					## mark a section (Learn more) 
+					## Escolle a linguaxe, escribe o pastie e gardao 
 	  </span>
 	<div style="float:right; clear:left; margin-bottom:5px;">
 		<label>Lenguaje: </label>
@@ -17,8 +17,8 @@
   </p>
 <% end %>
 
-<%= link_to 'Back', pastes_path %>
+
+
 <% content_for :lateral do %>
   <%= render :partial => "layouts/stats_langs" %>
-	
 <% end %>

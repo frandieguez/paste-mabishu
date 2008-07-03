@@ -10,9 +10,6 @@ class PaginasController < ApplicationController
     end
     respond_to do |format|
       format.html
-      format.xml {render :xml => @pagina.to_xml}
-      format.json {render :json => @pagina.to_json}
-      format.txt {render :text => "hola mundo"}
     end
     
   end

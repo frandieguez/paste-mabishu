@@ -1,5 +1,6 @@
 class PastesController < ApplicationController
-  before_filter :load_languages
+  before_filter :load_languages, :load_themes
+  before_filter :load_themes
   # GET /pastes
   # GET /pastes.xml
   def index
@@ -12,10 +13,20 @@ class PastesController < ApplicationController
   def show
     @paste = Paste.find(params[:id])
     @language = Language.find(@paste.language_id)
+    
+    
+    @contenido =
+    begin
+  			Uv.parse(@paste.content.to_s, "xhtml", "actionscript", true, @theme )
+  	rescue ArgumentError
+  			flash[:notice] = "no se puede elegir esa configuración"
+  		  Uv.parse(@paste.content.to_s, "xhtml", "actionscript", true, "blackboard")
+  	end
+  	
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @paste }
-      format.text { render :text => "Escrito en :#{Language.find(@paste.language_id).name}\n------------------------------------\n\n"+@paste.content.to_s}
+      format.text { render :text => "Paste #{@paste.id} \nEscrito en :#{Language.find(@paste.language_id).name}\n------------------------------------\n\n"+@paste.content.to_s}
     end
   end
 

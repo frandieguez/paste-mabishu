@@ -1,6 +1,7 @@
 class Admin::PastesController < ApplicationController
   layout "admin"
   before_filter :load_languages
+  before_filter :load_themes
   # GET /pastes
   # GET /pastes.xml
   def index
@@ -33,7 +34,7 @@ class Admin::PastesController < ApplicationController
 
     respond_to do |format|
       if @paste.save
-        flash[:notice] = 'Paste was successfully created.'
+        flash[:notice] = 'O teu Paste foi creado correctamente.'
         format.html { redirect_to([:admin,@paste]) }
         format.xml  { render :xml => @paste, :status => :created, :location => @paste }
       else

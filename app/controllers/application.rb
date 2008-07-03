@@ -20,5 +20,27 @@ class ApplicationController < ActionController::Base
         render_500
     end
   end
+  def load_themes
+    @themes = {
+    				"all_hallows_eve" => "All Hallow's Eve",
+    				"blackboard" => "Blackboard",
+    				"brilliance_black" => "Brilliance Black",
+    				"cobalt" => "Cobalt",
+    				"expreso_libre" => "Espresso Libre",
+    				"idle" => "IDLE",
+    				"mac_classic" => "Mac Classic",
+    				"magicwb_amiga" => "MagicWB (Amiga)",
+    				"pastels_on_dark" => "Pastels on Dark",
+    				"slate" => "Slate",
+    				"slush_and_poppies" => "Slush and Poppies",
+    				"sunburst" => "Sunburst",
+    				"sunburst_josh" => "Sunburst (Josh)",
+    				"twilight" => "Twilight",
+    				"vibrant_ink" => "Vibrant Ink"
+
+    			}
+  			@theme = (params[:theme] if @themes.include?(params[:theme])) || "idle"
+
+  end
   
 end

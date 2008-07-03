@@ -1,5 +1,6 @@
 class Admin::LanguagesController < ApplicationController
   layout "admin"
+  before_filter :load_syntaxes
   # GET /languages
   # GET /languages.xml
   def index
@@ -71,5 +72,9 @@ class Admin::LanguagesController < ApplicationController
       format.html { redirect_to(languages_url) }
       format.xml  { head :ok }
     end
+  end
+  private
+  def load_syntaxes
+    @syntaxes = Uv.syntaxes
   end
 end
