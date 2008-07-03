@@ -698,3 +698,9 @@ input[type="text"]{
 small.show-fckeditor{
 	float:right; color:Gray; font-size:0.6em; text-decoration:none
 }
+.actions-index-pastes{
+	display:block;
+	width:100%;
+	text-align:right;
+	font-size:.7em;
+}

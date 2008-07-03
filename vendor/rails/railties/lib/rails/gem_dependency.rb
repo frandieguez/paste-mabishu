@@ -31,13 +31,12 @@ module Rails
         args << @requirement.to_s if @requirement
         gem *args
       else
-        $LOAD_PATH.unshift File.join(unpacked_paths.first, 'lib')
-        ext = File.join(unpacked_paths.first, 'ext')
-        $LOAD_PATH.unshift(ext) if File.exist?(ext)
+        $LOAD_PATH << File.join(unpacked_paths.first, 'lib')
         @frozen = true
       end
       @load_paths_added = true
     rescue Gem::LoadError
+      puts $!.to_s
     end
     
     def dependencies
@@ -74,9 +73,7 @@ module Rails
     end
 
     def install
-      cmd = "#{gem_command} #{install_command.join(' ')}"
-      puts cmd
-      puts %x(#{cmd})
+      Gem::GemRunner.new.run(install_command)
     end
     
     def unpack_to(directory)
@@ -103,14 +100,10 @@ private ###################################################################
     def specification
       @spec ||= Gem.source_index.search(Gem::Dependency.new(@name, @requirement)).sort_by { |s| s.version }.last
     end
-    
-    def gem_command
-      RUBY_PLATFORM =~ /win32/ ? 'gem.bat' : 'gem'
-    end
 
     def install_command
       cmd = %w(install) << @name
-      cmd << "--version" << %("#{@requirement.to_s}") if @requirement
+      cmd << "--version" << "#{@requirement.to_s}" if @requirement
       cmd << "--source"  << @source  if @source
       cmd
     end

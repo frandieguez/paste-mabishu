@@ -19,7 +19,7 @@ class PastesController < ApplicationController
     begin
   			Uv.parse(@paste.content.to_s, "xhtml", "actionscript", true, @theme )
   	rescue ArgumentError
-  			flash[:notice] = "no se puede elegir esa configuración"
+  			flash[:notice] = "non se pode elexir esa configuración"
   		  Uv.parse(@paste.content.to_s, "xhtml", "actionscript", true, "blackboard")
   	end
   	
@@ -45,7 +45,7 @@ class PastesController < ApplicationController
 
     respond_to do |format|
       if @paste.save
-        flash[:notice] = 'Paste was successfully created.'
+        flash[:notice] = 'O teu Paste foi creado correctamente.'
         format.html { redirect_to(@paste) }
         format.xml  { render :xml => @paste, :status => :created, :location => @paste }
       else

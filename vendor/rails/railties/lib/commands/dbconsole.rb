@@ -2,13 +2,8 @@ require 'erb'
 require 'yaml'
 require 'optparse'
 
-include_password = false
-
 OptionParser.new do |opt|
-  opt.banner = "Usage: dbconsole [options] [environment]"
-  opt.on("-p", "--include-password", "Automatically provide the database from database.yml") do |v|
-    include_password = true
-  end
+  opt.banner = "Usage: dbconsole [environment]"
   opt.parse!(ARGV)
   abort opt.to_s unless (0..1).include?(ARGV.size)
 end
@@ -36,12 +31,9 @@ when "mysql"
     'port'      => '--port',
     'socket'    => '--socket',
     'username'  => '--user',
+    'password'  => '--password',
     'encoding'  => '--default-character-set'
   }.map { |opt, arg| "#{arg}=#{config[opt]}" if config[opt] }.compact
-
-  if config['password'] && include_password
-    args << "--password=#{config['password']}"
-  end
 
   args << config['database']
 
@@ -51,7 +43,7 @@ when "postgresql"
   ENV['PGUSER']     = config["username"] if config["username"]
   ENV['PGHOST']     = config["host"] if config["host"]
   ENV['PGPORT']     = config["port"].to_s if config["port"]
-  ENV['PGPASSWORD'] = config["password"].to_s if config["password"] && include_password
+  ENV['PGPASSWORD'] = config["password"].to_s if config["password"]
   exec(find_cmd('psql'), config["database"])
 
 when "sqlite"

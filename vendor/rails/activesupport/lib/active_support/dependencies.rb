@@ -82,10 +82,9 @@ module Dependencies #:nodoc:
     # infinite loop with mutual dependencies.
     loaded << expanded
 
-    begin
-      if load?
-        log "loading #{file_name}"
-
+    if load?
+      log "loading #{file_name}"
+      begin
         # Enable warnings iff this file has not been loaded before and
         # warnings_on_first_load is set.
         load_args = ["#{file_name}.rb"]
@@ -96,13 +95,13 @@ module Dependencies #:nodoc:
         else
           enable_warnings { result = load_file(*load_args) }
         end
-      else
-        log "requiring #{file_name}"
-        result = require file_name
+      rescue Exception
+        loaded.delete expanded
+        raise
       end
-    rescue Exception
-      loaded.delete expanded
-      raise
+    else
+      log "requiring #{file_name}"
+      result = require file_name
     end
 
     # Record history *after* loading so first load gets warnings.

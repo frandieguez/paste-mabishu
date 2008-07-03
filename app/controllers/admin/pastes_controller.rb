@@ -5,7 +5,7 @@ class Admin::PastesController < ApplicationController
   # GET /pastes
   # GET /pastes.xml
   def index
-    @pastes = Paste.find(:all, :order => "created_at DESC")
+    @pastes = Paste.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 5
   end
 
   # GET /pastes/1
@@ -62,14 +62,21 @@ class Admin::PastesController < ApplicationController
       end
     end
   end
- def search
-  @pastes = Paste.find_by_content(params[:q])
   
-  respond_to do |format|
-    format.html
-    format.xml { render :xml => @pastes}
+  def destroy
+    @paste = Paste.find(params[:id])
+    @paste.destroy unless @paste.nil?
+    flash[:notice] = "A Paste #{@paste.id} foi eliminada"
+    redirect_to(pastes_path)
   end
- end
+  def search
+   @pastes = Paste.find :all, :conditions =>"content LIKE '%#{params[:q]}%'"
+
+   respond_to do |format|
+     format.html
+     format.xml { render :xml => @pastes}
+   end
+  end
  private
  def load_languages
    @languages = Language.find :all, :order => "name"

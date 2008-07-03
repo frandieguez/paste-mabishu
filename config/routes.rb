@@ -10,6 +10,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.namespace :admin, :prefix => "admin" do |admin|
     map.root :controller=> "Admin::Paginas", :action => "index"
+    map.connect "admin/search", :controller => "admin/pastes", :action => "search"
     admin.resources :languages
     admin.resources :pastes
     admin.resources :paginas

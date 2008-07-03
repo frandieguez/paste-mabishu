@@ -106,16 +106,11 @@ module ActiveRecord
       #  SELECT * FROM suppliers LIMIT 10 OFFSET 50
       def add_limit_offset!(sql, options)
         if limit = options[:limit]
-          sql << " LIMIT #{sanitize_limit(limit)}"
+          sql << " LIMIT #{limit}"
           if offset = options[:offset]
-            sql << " OFFSET #{offset.to_i}"
+            sql << " OFFSET #{offset}"
           end
         end
-        sql
-      end
-
-      def sanitize_limit(limit)
-        limit.to_s[/,/] ? limit.split(',').map{ |i| i.to_i }.join(',') : limit.to_i
       end
 
       # Appends a locking clause to an SQL statement.

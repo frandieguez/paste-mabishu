@@ -17,13 +17,13 @@ module ActionController
         reset!
       end
 
-      def benchmark(n, profiling = false)
+      def benchmark(n)
         @quiet = true
         print '  '
 
         result = Benchmark.realtime do
           n.times do |i|
-            run(profiling)
+            run
             print_progress(i)
           end
         end
@@ -43,15 +43,8 @@ module ActionController
           script = File.read(script_path)
 
           source = <<-end_source
-            def run(profiling = false)
-              if profiling
-                RubyProf.resume do
-                  #{script}
-                end
-              else
-                #{script}
-              end
-
+            def run
+              #{script}
               old_request_count = request_count
               reset!
               self.request_count = old_request_count
@@ -98,22 +91,21 @@ module ActionController
     def profile(sandbox)
       load_ruby_prof
 
-      benchmark(sandbox, true)
-      results = RubyProf.stop
+      results = RubyProf.profile { benchmark(sandbox) }
 
       show_profile_results results
       results
     end
 
-    def benchmark(sandbox, profiling = false)
+    def benchmark(sandbox)
       sandbox.request_count = 0
-      elapsed = sandbox.benchmark(options[:n], profiling).to_f
+      elapsed = sandbox.benchmark(options[:n]).to_f
       count = sandbox.request_count.to_i
       puts '%.2f sec, %d requests, %d req/sec' % [elapsed, count, count / elapsed]
     end
 
     def warmup(sandbox)
-      Benchmark.realtime { sandbox.run(false) }
+      Benchmark.realtime { sandbox.run }
     end
 
     def default_options
@@ -144,7 +136,6 @@ module ActionController
     protected
       def load_ruby_prof
         begin
-          gem 'ruby-prof', '>= 0.6.1'
           require 'ruby-prof'
           if mode = options[:measure]
             RubyProf.measure_mode = RubyProf.const_get(mode.upcase)

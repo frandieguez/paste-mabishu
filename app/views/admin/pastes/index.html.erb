@@ -1,15 +1,13 @@
 <h1>Listaxe de Pastes</h1>
-
+<div style="float:right; position:absolute; top:10px; right:10px">
+	<small>P&aacute;xinas:</small><%= will_paginate @pastes, options = {:prev_label => "", :next_label => "",:id => 'wp_posts' } %>
+</div><!-- fin  -->
   <% for  paste in @pastes %>
 	<h2>Paste <%=  %></h2>
-	<%= render :partial => "layouts/paste_trim", :locals => {:paste => paste, :theme => @theme} %>    
-	<%= link_to 'Ver Entera', [:admin,paste] %>
-	<%= link_to 'Editar', edit_admin_paste_path(paste) %>
-	<%= link_to 'Eliminar', [:admin,paste], :confirm => 'Are you sure?', :method => :delete %>
+	<%= render :partial => "layouts/paste_trim", :locals => {:paste => paste, :theme => @theme} %>
 
   <% end %>
-
-
+<br><br>
 
 <%= link_to 'Escribir nova paste', new_paste_path %>
 

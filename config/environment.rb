@@ -5,7 +5,6 @@ require File.join(File.dirname(__FILE__), 'boot')
 
 Rails::Initializer.run do |config|
   config.frameworks -= [ :active_resource, :action_mailer ]
-  config.gem "ultraviolet"
   config.gem 'mislav-will_paginate', :version => '~> 2.3.2', :lib => 'will_paginate', :source => 'http://gems.github.com'
   #config.gem "mislav-will_paginate"
   # config.plugins = [ :exception_notification, :ssl_requirement, :all ]
@@ -20,7 +19,9 @@ Rails::Initializer.run do |config|
   # config.active_record.schema_format = :sql
   # config.active_record.observers = :cacher, :garbage_collector
 
-  require "coderay"
+  #require "coderay"
+  require "rubygems"
+  require "uv"
   #require 'will_paginate'
 
 end

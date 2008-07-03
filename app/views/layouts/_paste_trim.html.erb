@@ -3,5 +3,9 @@
 	<p class="when"> fai <%= hace_tiempo_en_palabras(paste.created_at) %></p>
 	<p class="content" style="margin-top:40px">	
 	<%= Uv.parse(truncate(paste.content,300), "xhtml", Language.find(paste.language_id).uv_name, true, theme) %></p>
+	
 </p>
+<p class="actions-index-pastes"><%= link_to 'Ver Entera', [:admin,paste] %>
+<%= link_to 'Editar', edit_admin_paste_path(paste) %>
+<%= link_to 'Eliminar', [:admin,paste], :confirm => 'Are you sure?', :method => :delete %></p>
 </div><!-- fin  -->
