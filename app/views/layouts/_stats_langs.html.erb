@@ -1,3 +1,4 @@
+<% cache(:action_suffix => "stats-languages") do %>
 <h3>Linguaxes <span>(totais)</span></h3>
 	<% if !@languages.blank? %>
 	<table class="stats">
@@ -12,4 +13,5 @@
     </table>
 	<% else %>
 	  No hay estadísticas
-	<% end %>
+	<% end %>	
+<% end %>

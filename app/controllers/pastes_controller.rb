@@ -4,8 +4,9 @@ class PastesController < ApplicationController
   # GET /pastes
   # GET /pastes.xml
   def index
-    @pastes = Paste.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 4
-    @languages = Language.find :all, :order => "name"
+    unless read_fragment({})
+      @pastes = Paste.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 4
+    end
   end
 
   # GET /pastes/1
@@ -13,8 +14,6 @@ class PastesController < ApplicationController
   def show
     @paste = Paste.find(params[:id])
     @language = Language.find(@paste.language_id)
-    
-    
     @contenido =
     begin
   			Uv.parse(@paste.content.to_s, "xhtml", "actionscript", true, @theme )
@@ -34,7 +33,6 @@ class PastesController < ApplicationController
   # GET /pastes/new.xml
   def new
     @paste = Paste.new
-    @languages = Language.find :all, :order => "name"
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @paste }
@@ -64,7 +62,6 @@ class PastesController < ApplicationController
  end
  def download
    @paste = Paste.find(params[:id])
-   @lenguaje = Language.find(@paste.language_id)
    send_data @paste.content.to_s,
         :type => @lenguaje.mimetype,
         :disposition => "attachment",
@@ -72,6 +69,8 @@ class PastesController < ApplicationController
  end
  private
  def load_languages
-   @languages = Language.find :all, :order => "name"
+   unless read_fragment({})
+      @languages = Language.find :all, :order => "name"       
+   end
  end
 end

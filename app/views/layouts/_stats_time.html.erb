@@ -1,3 +1,4 @@
+<% cache(:action_suffix => "stats-times") do %>
 <h3>Recentemente <span>posteados</span></h3>
 	<% if !@languages.blank? %>
 	<% @tiempos= [1.day.ago,1.week.ago,1.month.ago,1.year.ago]  %>
@@ -22,3 +23,4 @@
 	<% else %>
 	  No hay estadísticas
 	<% end %>
+<% end %>
