@@ -9,7 +9,7 @@
   </p>
   <p>
     <%= f.label :language_id %><br />
-    <%= f.text_field :language_id %>
+	<%= collection_select("paste","language_id", @languages, "id", "name") %>
   </p>
   <p>
     <%= f.submit "Update" %>

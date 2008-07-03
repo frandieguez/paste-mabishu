@@ -12,13 +12,32 @@ class Admin::PastesController < ApplicationController
   # GET /pastes/1.xml
   def show
     @paste = Paste.find(params[:id])
+    @language = Language.find(@paste.language_id).name
 
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @paste }
     end
   end
+  def edit
+    @paste = Paste.find(params[:id])
+  end
+  
+  def update
+    @paste = Paste.find(params[:id])
 
+    respond_to do |format|
+      if @paste.update_attributes(params[:pagina])
+        flash[:notice] = 'O teu paste foi actualizado correctamente.'
+        format.html { redirect_to([:admin,@paste]) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @paste.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+  
   # GET /pastes/new
   # GET /pastes/new.xml
   def new

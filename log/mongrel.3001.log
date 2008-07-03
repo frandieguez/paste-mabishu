@@ -1,0 +1,73 @@
+** Daemonized, any open files are closed.  Look at tmp/pids/mongrel.3001.pid and log/mongrel.3001.log for info.
+** Starting Mongrel listening at 0.0.0.0:3001
+** Starting Rails with development environment...
+no such file to load -- ultraviolet
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/Users/fran/Code/Rails/pastie-mabishu/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:509:in `require'
+/Users/fran/Code/Rails/pastie-mabishu/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:354:in `new_constants_in'
+/Users/fran/Code/Rails/pastie-mabishu/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:509:in `require'
+/Users/fran/Code/Rails/pastie-mabishu/config/../vendor/rails/railties/lib/rails/gem_dependency.rb:57:in `load'
+/Users/fran/Code/Rails/pastie-mabishu/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/inflector.rb:283:in `to_proc'
+/Users/fran/Code/Rails/pastie-mabishu/config/../vendor/rails/railties/lib/initializer.rb:246:in `each'
+/Users/fran/Code/Rails/pastie-mabishu/config/../vendor/rails/railties/lib/initializer.rb:246:in `load_gems'
+/Users/fran/Code/Rails/pastie-mabishu/config/../vendor/rails/railties/lib/initializer.rb:137:in `process'
+/Users/fran/Code/Rails/pastie-mabishu/config/../vendor/rails/railties/lib/initializer.rb:93:in `send'
+/Users/fran/Code/Rails/pastie-mabishu/config/../vendor/rails/railties/lib/initializer.rb:93:in `run'
+/Users/fran/Code/Rails/pastie-mabishu/config/environment.rb:6
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:147:in `rails'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:113:in `cloaker_'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:149:in `call'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:149:in `listener'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:99:in `cloaker_'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:50:in `call'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:50:in `initialize'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:84:in `new'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:84:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/command.rb:212:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
+/usr/local/bin/mongrel_rails:19:in `load'
+/usr/local/bin/mongrel_rails:19
+no such file to load -- ultraviolet
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/Users/fran/Code/Rails/pastie-mabishu/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:509:in `require'
+/Users/fran/Code/Rails/pastie-mabishu/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:354:in `new_constants_in'
+/Users/fran/Code/Rails/pastie-mabishu/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/dependencies.rb:509:in `require'
+/Users/fran/Code/Rails/pastie-mabishu/config/../vendor/rails/railties/lib/rails/gem_dependency.rb:57:in `load'
+/Users/fran/Code/Rails/pastie-mabishu/vendor/rails/activerecord/lib/../../activesupport/lib/active_support/inflector.rb:283:in `to_proc'
+/Users/fran/Code/Rails/pastie-mabishu/config/../vendor/rails/railties/lib/initializer.rb:246:in `each'
+/Users/fran/Code/Rails/pastie-mabishu/config/../vendor/rails/railties/lib/initializer.rb:246:in `load_gems'
+/Users/fran/Code/Rails/pastie-mabishu/config/../vendor/rails/railties/lib/initializer.rb:142:in `process'
+/Users/fran/Code/Rails/pastie-mabishu/config/../vendor/rails/railties/lib/initializer.rb:93:in `send'
+/Users/fran/Code/Rails/pastie-mabishu/config/../vendor/rails/railties/lib/initializer.rb:93:in `run'
+/Users/fran/Code/Rails/pastie-mabishu/config/environment.rb:6
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/ruby/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/rails.rb:147:in `rails'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:113:in `cloaker_'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:149:in `call'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:149:in `listener'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:99:in `cloaker_'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:50:in `call'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/configurator.rb:50:in `initialize'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:84:in `new'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:84:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/../lib/mongrel/command.rb:212:in `run'
+/usr/local/lib/ruby/gems/1.8/gems/mongrel-1.1.5/bin/mongrel_rails:281
+/usr/local/bin/mongrel_rails:19:in `load'
+/usr/local/bin/mongrel_rails:19
+These gems that this application depends on are missing:
+ - ultraviolet
+Run "rake gems:install" to install them.
+** Rails loaded.
+** Loading any Rails specific GemPlugins
+** Signals ready.  TERM => stop.  USR2 => restart.  INT => stop (no restart).
+** Rails signals registered.  HUP => reload (without restart).  It might not work well.
+** Mongrel 1.1.5 available at 0.0.0.0:3001
+** Writing PID file to tmp/pids/mongrel.3001.pid
+/Users/fran/Code/Rails/pastie-mabishu/app/views/layouts/application.html.erb:66: warning: don't put space before argument parentheses
+/Users/fran/Code/Rails/pastie-mabishu/app/views/layouts/application.html.erb:66: warning: don't put space before argument parentheses
+/Users/fran/Code/Rails/pastie-mabishu/app/views/layouts/application.html.erb:66: warning: don't put space before argument parentheses

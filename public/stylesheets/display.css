@@ -695,3 +695,6 @@ tr.header{
 input[type="text"]{
 	border:1px solid #aaa;
 }
+small.show-fckeditor{
+	float:right; color:Gray; font-size:0.6em; text-decoration:none
+}

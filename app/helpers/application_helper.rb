@@ -7,11 +7,11 @@ module ApplicationHelper
     case distance_in_minutes
       when 0..1   then "1 minuto"
       when 2..45  then "#{distance_in_minutes} minutos"
-      when 46..70 then "una hora"
-      when 70..120 then "poco mas de una hora"
+      when 46..70 then "unha hora"
+      when 70..120 then "poco máis dunha hora"
       when 120..10000 then "#{distance_in_minutes/60} horas"
-      when 10000.10100 then "una semana"
-      else "hace mucho tiempo"
+      when 10000.10100 then "unha semana"
+      else "fai moito tempo tiempo"
     end
   end
   def tiempo_exacto(time)
