@@ -1,0 +1,506 @@
+diff --git a/app/controllers/admin/pastes_controller.rb b/app/controllers/admin/pastes_controller.rb
+index 88d783c..72f9e0f 100644
+--- a/app/controllers/admin/pastes_controller.rb
++++ b/app/controllers/admin/pastes_controller.rb
+@@ -12,8 +12,6 @@ class Admin::PastesController < ApplicationController
+   # GET /pastes/1.xml
+   def show
+     @paste = Paste.find(params[:id])
+-    @language = Language.find(@paste.language_id).name
+-
+     respond_to do |format|
+       format.html # show.html.erb
+       format.xml  { render :xml => @paste }
+@@ -25,10 +23,11 @@ class Admin::PastesController < ApplicationController
+   
+   def update
+     @paste = Paste.find(params[:id])
+-
++    @tags = params[:paste][:tag_list]
+     respond_to do |format|
+-      if @paste.update_attributes(params[:pagina])
++      if @paste.update_attributes(params[:paste])
+         flash[:notice] = 'O teu paste foi actualizado correctamente.'
++        @paste.update_attributes(:tag_list => @tags)
+         format.html { redirect_to([:admin,@paste]) }
+         format.xml  { head :ok }
+       else
+@@ -71,7 +70,8 @@ class Admin::PastesController < ApplicationController
+   end
+   def search
+    @pastes = Paste.find :all, :conditions =>"content LIKE '%#{params[:q]}%'"
+-
++   @pastes << Paste.find_tagged_with( params[:q])
++   @pastes.flatten!
+    respond_to do |format|
+      format.html
+      format.xml { render :xml => @pastes}
+diff --git a/app/controllers/application.rb b/app/controllers/application.rb
+index 92c00af..1592a80 100644
+--- a/app/controllers/application.rb
++++ b/app/controllers/application.rb
+@@ -42,5 +42,11 @@ class ApplicationController < ActionController::Base
+   			@theme = (params[:theme] if @themes.include?(params[:theme])) || "idle"
+ 
+   end
++  def load_languages
++    unless read_fragment({})
++       @languages = Language.find :all, :order => "name"       
++    end
++  end
++  
+   
+ end
+diff --git a/app/controllers/paginas_controller.rb b/app/controllers/paginas_controller.rb
+index 20068bc..c4ff008 100644
+--- a/app/controllers/paginas_controller.rb
++++ b/app/controllers/paginas_controller.rb
+@@ -1,9 +1,9 @@
+ class PaginasController < ApplicationController
++  before_filter :load_languages
+   def show
+     begin
+-      @languages = Language.find :all
+-      @pagina = Pagina.find_by_link(params[:pagina].to_s)
+-      raise unless !pagina.nil?
++      @pagina = Pagina.find_by_link(params[:pagina])
++      raise if @pagina.nil?
+     rescue 
+       @pagina = Pagina.find :first
+       flash[:notice] = "Seica houbo problemas"
+diff --git a/app/controllers/pastes_controller.rb b/app/controllers/pastes_controller.rb
+index 885e055..3c88b9c 100644
+--- a/app/controllers/pastes_controller.rb
++++ b/app/controllers/pastes_controller.rb
+@@ -1,6 +1,5 @@
+ class PastesController < ApplicationController
+   before_filter :load_languages, :load_themes
+-  before_filter :load_themes
+   # GET /pastes
+   # GET /pastes.xml
+   def index
+@@ -12,20 +11,19 @@ class PastesController < ApplicationController
+   # GET /pastes/1
+   # GET /pastes/1.xml
+   def show
+-    @paste = Paste.find(params[:id])
+-    @language = Language.find(@paste.language_id)
++    @paste = Paste.find(params[:id], :include => :language)
+     @contenido =
+     begin
+   			Uv.parse(@paste.content.to_s, "xhtml", "actionscript", true, @theme )
+   	rescue ArgumentError
+-  			flash[:notice] = "non se pode elexir esa configuración"
++  			flash[:notice] = "Non se pode elexir esa configuración"
+   		  Uv.parse(@paste.content.to_s, "xhtml", "actionscript", true, "blackboard")
+   	end
+   	
+     respond_to do |format|
+       format.html # show.html.erb
+       format.xml  { render :xml => @paste }
+-      format.text { render :text => "Paste #{@paste.id} \nEscrito en :#{Language.find(@paste.language_id).name}\n------------------------------------\n\n"+@paste.content.to_s}
++      format.text { render :text => "Paste #{@paste.id} \nEscrito en: #{@paste.language.name}\n------------------------------------\n\n"+@paste.content.to_s}
+     end
+   end
+ 
+@@ -54,7 +52,8 @@ class PastesController < ApplicationController
+   end
+  def search
+   @pastes = Paste.find :all, :conditions =>"content LIKE '%#{params[:q]}%'"
+-  
++  @pastes << Paste.find_tagged_with( params[:q])
++  @pastes.flatten!
+   respond_to do |format|
+     format.html
+     format.xml { render :xml => @pastes}
+@@ -63,14 +62,8 @@ class PastesController < ApplicationController
+  def download
+    @paste = Paste.find(params[:id])
+    send_data @paste.content.to_s,
+-        :type => @lenguaje.mimetype,
++        :type => @paste.language.mimetype,
+         :disposition => "attachment",
+         :filename => "#{@paste.id}.#{@lenguaje.extension}"
+  end
+- private
+- def load_languages
+-   unless read_fragment({})
+-      @languages = Language.find :all, :order => "name"       
+-   end
+- end
+ end
+diff --git a/app/models/language.rb b/app/models/language.rb
+index 49d5bb8..c8388c7 100644
+--- a/app/models/language.rb
++++ b/app/models/language.rb
+@@ -2,7 +2,6 @@ class Language < ActiveRecord::Base
+   validates_uniqueness_of :name, :on => :create, :message => "debe ser único."
+   validates_presence_of :mimetype
+   #validates_presence_of :name, :on => [:create,:update], :message => "es un campo obligatorio."
+-  belongs_to :paste
+   def self.count_pastes(name)
+     @id_language =  Language.find_by_name(name).id
+     @pastes = Paste.find_by_language_id(@id_language)
+diff --git a/app/models/paste.rb b/app/models/paste.rb
+index af1b94f..f2018e2 100644
+--- a/app/models/paste.rb
++++ b/app/models/paste.rb
+@@ -1,3 +1,5 @@
+ class Paste < ActiveRecord::Base
+-  has_one :language
++  belongs_to :language
++  acts_as_taggable
++  
+ end
+diff --git a/app/views/admin/languages/index.html.erb b/app/views/admin/languages/index.html.erb
+index aec91eb..f71c575 100644
+--- a/app/views/admin/languages/index.html.erb
++++ b/app/views/admin/languages/index.html.erb
+@@ -1,5 +1,5 @@
+ <h1>Xestión de Linguaxes</h1>
+-
++<% if !@languages.blank? %>
+ <table width="100%" class="listado">
+   <tr class="header">
+     <th>Nome</th>
+@@ -28,6 +28,11 @@
+ <% end %>
+ </table>
+ <br>
++<% else %>
++	<p>Non hay ningunha linguaxe dispoñíbel</p>
++<% end %>
++
++
+ <div>Engade unha nova linguaxe:
+ 	<% form_for([:admin,@language], html_options={:style=> "display:inline"}) do |f| %>
+   		<%= f.error_messages %>
+diff --git a/app/views/admin/paginas/index.html.erb b/app/views/admin/paginas/index.html.erb
+index a1f8e71..8bbd900 100644
+--- a/app/views/admin/paginas/index.html.erb
++++ b/app/views/admin/paginas/index.html.erb
+@@ -36,4 +36,4 @@
+ 
+ <br />
+ 
+-<%= link_to 'New pagina', new_admin_pagina_path %>
++<%= link_to 'Escribir nova pagina', new_admin_pagina_path %>
+diff --git a/app/views/admin/paginas/new.html.erb b/app/views/admin/paginas/new.html.erb
+index 25a58f8..4e6645b 100644
+--- a/app/views/admin/paginas/new.html.erb
++++ b/app/views/admin/paginas/new.html.erb
+@@ -12,8 +12,8 @@
+     <%= f.text_area :content %>
+   </p>
+   <p>
+-    <%= f.submit "Create" %>
++    <%= f.submit "Crear" %>
+   </p>
+ <% end %>
+ 
+-<%= link_to 'Back', paginas_path %>
++<%= link_to 'Voltar á lista de páxinas', paginas_path %>
+diff --git a/app/views/admin/pastes/edit.html.erb b/app/views/admin/pastes/edit.html.erb
+index e05c868..c51a855 100644
+--- a/app/views/admin/pastes/edit.html.erb
++++ b/app/views/admin/pastes/edit.html.erb
+@@ -7,14 +7,19 @@
+     <%= f.label :content %><br />
+     <%= f.text_area :content %>
+   </p>
+-  <p>
++  <p style="float:left;margin-right:15px">
+     <%= f.label :language_id %><br />
+ 	<%= collection_select("paste","language_id", @languages, "id", "name") %>
+   </p>
+-  <p>
+-    <%= f.submit "Update" %>
++  <p style="float:left; margin-right:15px">
++    <%= f.label :tag_list %><br />
++	<%= f.text_field :tag_list %>
++  </p>
++  <p style="clear:both">
++    <%= f.submit "Actualizar" %> ou <%= link_to 'Cancelar', admin_pastes_path %>
+   </p>
+ <% end %>
+ 
+-<%= link_to 'Show', [:admin,@paste] %> |
+-<%= link_to 'Back', admin_pastes_path %>
++<p class="acciones">
++	
++</p>
+diff --git a/app/views/admin/pastes/index.html.erb b/app/views/admin/pastes/index.html.erb
+index 6b4b7ea..de9678c 100644
+--- a/app/views/admin/pastes/index.html.erb
++++ b/app/views/admin/pastes/index.html.erb
+@@ -4,12 +4,12 @@
+ </div><!-- fin  -->
+   <% for  paste in @pastes %>
+ 	<h2>Paste <%=  %></h2>
+-	<%= render :partial => "layouts/paste_trim", :locals => {:paste => paste, :theme => @theme} %>
++	<%= render :partial => "layouts/paste_trim", :locals => {:paste => paste, :theme => @theme, :admin => true} %>
+ 
+   <% end %>
+ <br><br>
+ 
+-<%= link_to 'Escribir nova paste', new_paste_path %>
++<%= link_to 'Escribir nova paste', new_admin_paste_path %>
+ 
+ <% content_for :lateral do %>
+   <%= render :partial => "layouts/stats_langs" %>
+diff --git a/app/views/admin/pastes/show.html.erb b/app/views/admin/pastes/show.html.erb
+index 4d0ac59..dd49b75 100644
+--- a/app/views/admin/pastes/show.html.erb
++++ b/app/views/admin/pastes/show.html.erb
+@@ -1,10 +1,27 @@
++<div style="float:right">
++	<script type="text/javascript" charset="utf-8">
++		function reload_theme(){
++			window.location="<%= admin_paste_path.to_s+'?theme=' %>"+document.getElementById("theme").value
++		}
++	</script>
++	<select id="theme" onchange="reload_theme();">
++		<%- @themes.each_pair do |val,name| %><option <%= (@theme == val) ? "selected":"" %> value="<%= val %>" ><%= name  %></option><%- end -%>
++	</select>	
++</div><!-- fin  -->
++<br><br>
++<div class="pastePreview">
+ <p>
+   <b>Escrito en:</b>
+-  <%=h @language %>
++  <%=h @paste.language.name %> con <%= @paste.content.split("\n").size %> líneas
+ </p>
++
+ <p>
+-  <%=h @paste.content %>
++	<%= Uv.parse(@paste.content, "xhtml", @paste.language.uv_name, true, @theme) %>
+ </p>
++<p class="tags"><%= @paste.tag_list.blank? ? "Sin tags" : @paste.tag_list %></p>
++</div>
++<%= link_to 'Editar', edit_admin_paste_path(@paste) %> |
++<%= link_to 'Voltar á lista', admin_pastes_path %>
+ 
+ <% content_for :lateral do %>
+   <label>Pegado fai</label><br />
+@@ -27,5 +44,4 @@
+ <%# stat_count_helper %>
+ <% end %>
+ 
+-<%= link_to 'Edit', edit_admin_paste_path(@paste) %> |
+-<%= link_to 'Back', admin_pastes_path %>
++
+diff --git a/app/views/layouts/_paste_trim.html.erb b/app/views/layouts/_paste_trim.html.erb
+index a3b2f8a..c1b17b1 100644
+--- a/app/views/layouts/_paste_trim.html.erb
++++ b/app/views/layouts/_paste_trim.html.erb
+@@ -1,13 +1,16 @@
+-<% cache(:action_suffix => "all_topics_"+paste.id.to_s) do  %>
++<%# cache(:action_suffix => "all_topics_"+paste.id.to_s) do  %>
+ 	<div class="pastePreview">
+-		<p class="link" style="float:left"><%= link_to "Ver máis", paste %> <span>(<%= paste.content.split("\n").size %> lineas)</span><br><br>
++		<p class="link" style="float:left"><%= link_to "Ver máis", (admin) ? admin_paste_path(paste) : paste  %> <span>(<%= paste.content.split("\n").size %> lineas)</span><br><br>
+ 		<p class="when"> fai <%= hace_tiempo_en_palabras(paste.created_at) %></p>
+ 		<p class="content" style="margin-top:40px">	
+-		<%= Uv.parse(truncate(paste.content,300), "xhtml", Language.find(paste.language_id).uv_name, true, theme) %></p>
++		<%= Uv.parse(truncate(paste.content,300), "xhtml", paste.language.uv_name, true, @theme) %></p>
+ 
+ 	</p>
+-	<p class="actions-index-pastes"><%= link_to 'Ver Entera', [:admin,paste] %>
+-	<%= link_to 'Editar', edit_admin_paste_path(paste) %>
+-	<%= link_to 'Eliminar', [:admin,paste], :confirm => 'Are you sure?', :method => :delete %></p>
+-	</div><!-- fin  -->
+-<% end %>
+\ No newline at end of file
++	<% if admin %>
++		<p class="actions-index-pastes"><%= link_to 'Ver Enteira', [:admin,paste] %>
++		<%= link_to 'Editar', edit_admin_paste_path(paste) %>
++		<%= link_to 'Eliminar', [:admin,paste], :confirm => '¿Estas seguro?', :method => :delete %></p>
++
++	<% end %>
++<%# end %>
++	</div><!-- fin  -->	
+\ No newline at end of file
+diff --git a/app/views/pastes/index.html.erb b/app/views/pastes/index.html.erb
+index 0c9c2b0..f1a6c5b 100644
+--- a/app/views/pastes/index.html.erb
++++ b/app/views/pastes/index.html.erb
+@@ -4,6 +4,7 @@
+ 	</div><!-- fin  -->
+ 	
+ 	<% if !@pastes.blank? %>
++
+ 	  <% for paste in @pastes %>
+ 	  	<%= render :partial => "layouts/paste_trim", :locals => { :paste => paste, :theme => @theme } %>
+ 	  <% end %>
+diff --git a/app/views/pastes/search.html.erb b/app/views/pastes/search.html.erb
+index 0cce5a0..58c81c6 100644
+--- a/app/views/pastes/search.html.erb
++++ b/app/views/pastes/search.html.erb
+@@ -1,19 +1,20 @@
+-<h1>Resultados de la búsqueda para la cadena "<%= params[:q] %>" - <small>Se ha encontrado <%= @pastes.size %> paste</small></h1>
++<h1>Resultados da procura "<%= params[:q] %>"</h1>
+ 
+ <% if params[:q].blank? %>
+-	No has proporcionado una cadena de búsqueda
++		Non proporcionaches un criterio de procura.
+ <% else %>
+-
++	<small>Atoparonse <%= @pastes.size %> paste</small>
+ 	<% if !@pastes.blank? %>
+ 	  <% for paste in @pastes %>
+-	  	<%= render :partial => "layouts/paste_trim", :locals => { :paste => paste} %>
++	  	<%= render :partial => "layouts/paste_trim", :locals => { :paste => paste, :theme => @theme} %>
+ 	  <% end %>
+ 	<% else %>
+ 		<div class="pastePreview">
+-			No hay pastes nuevos
++			Non hay pastes con ese criterio
+ 		</div><!-- fin  -->
+ 	<% end %>
+-
+-
+ <%end %>
+ 
++<% content_for :lateral do %>
++  <%= render :partial => "layouts/stats_time" %>
++<% end %>
+\ No newline at end of file
+diff --git a/app/views/pastes/show.html.erb b/app/views/pastes/show.html.erb
+index a43db34..3751552 100644
+--- a/app/views/pastes/show.html.erb
++++ b/app/views/pastes/show.html.erb
+@@ -10,12 +10,13 @@
+ </div><!-- fin  -->
+ <p>
+   <b>Escrito en:</b>
+-  <%=h @language.name %>
++  <%h @paste.language.name %>
+ </p>
+ 
+ <p>
+ 	<%= @contenido%>
+ </p>
++<p class="tags"><%= @paste.tag_list.blank? ? "Sin tags" : @paste.tag_list %></p>
+ 
+ 
+ <% content_for :lateral do %>
+diff --git a/config/environment.rb b/config/environment.rb
+index 4ecebc2..88e5e10 100644
+--- a/config/environment.rb
++++ b/config/environment.rb
+@@ -19,9 +19,7 @@ Rails::Initializer.run do |config|
+   # config.active_record.schema_format = :sql
+   # config.active_record.observers = :cacher, :garbage_collector
+ 
+-  #require "coderay"
+   require "rubygems"
+   require "uv"
+-  #require 'will_paginate'
+ 
+ end
+diff --git a/config/environments/development.rb b/config/environments/development.rb
+index 11a9867..93bb69a 100644
+--- a/config/environments/development.rb
++++ b/config/environments/development.rb
+@@ -11,7 +11,7 @@ config.whiny_nils = true
+ # Show full error reports and disable caching
+ config.action_controller.consider_all_requests_local = false
+ config.action_view.debug_rjs                         = true
+-config.action_controller.perform_caching             = true
++config.action_controller.perform_caching             = false
+ 
+ # Don't care if the mailer can't send
+ config.action_mailer.raise_delivery_errors = false
+\ No newline at end of file
+diff --git a/config/mongrel_cluster.yml b/config/mongrel_cluster.yml
+index ecea46e..93d59de 100644
+--- a/config/mongrel_cluster.yml
++++ b/config/mongrel_cluster.yml
+@@ -2,4 +2,4 @@
+ log_file: log/mongrel.log
+ port: 3000
+ pid_file: tmp/pids/mongrel.pid
+-servers: 2
++servers: 2
+\ No newline at end of file
+diff --git a/config/routes.rb b/config/routes.rb
+index 04d1d98..a04fe47 100644
+--- a/config/routes.rb
++++ b/config/routes.rb
+@@ -2,7 +2,9 @@ ActionController::Routing::Routes.draw do |map|
+ 
+ 
+   map.root :controller => "pastes", :action => "new"
++  
+   map.connect "admin", :controller => "Admin::Paginas", :action => "index"
++  
+   map.connect "search", :controller => "pastes", :action => "search"
+   map.resources :paginas
+   map.resources :pastes
+@@ -16,7 +18,6 @@ ActionController::Routing::Routes.draw do |map|
+     admin.resources :paginas
+   end
+ 
+-  # Install the default routes as the lowest priority.
+   map.connect ':controller/:id/:action'
+   map.connect ':controller/:action/:id.:format'
+   map.connect "search", :controller => "pastes", :action => "search"
+diff --git a/db/development.sqlite3 b/db/development.sqlite3
+index 97040d0..62945d4 100644
+Binary files a/db/development.sqlite3 and b/db/development.sqlite3 differ
+diff --git a/db/production.sqlite3 b/db/production.sqlite3
+index e69de29..12ff46d 100644
+Binary files a/db/production.sqlite3 and b/db/production.sqlite3 differ
+diff --git a/db/schema.rb b/db/schema.rb
+index b8e03cb..7c1caf9 100644
+--- a/db/schema.rb
++++ b/db/schema.rb
+@@ -9,13 +9,7 @@
+ #
+ # It's strongly recommended to check this file into your version control system.
+ 
+-ActiveRecord::Schema.define(:version => 20080702232314) do
+-
+-  create_table "admin_languages", :force => true do |t|
+-    t.string   "name"
+-    t.datetime "created_at"
+-    t.datetime "updated_at"
+-  end
++ActiveRecord::Schema.define(:version => 20080704113051) do
+ 
+   create_table "languages", :force => true do |t|
+     t.string   "name"
+@@ -41,4 +35,18 @@ ActiveRecord::Schema.define(:version => 20080702232314) do
+     t.datetime "updated_at"
+   end
+ 
++  create_table "taggings", :force => true do |t|
++    t.integer  "tag_id"
++    t.integer  "taggable_id"
++    t.string   "taggable_type"
++    t.datetime "created_at"
++  end
++
++  add_index "taggings", ["taggable_id", "taggable_type"], :name => "index_taggings_on_taggable_id_and_taggable_type"
++  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
++
++  create_table "tags", :force => true do |t|
++    t.string "name"
++  end
++
+ end
+diff --git a/public/stylesheets/display.css b/public/stylesheets/display.css
+index 8a5313d..f819588 100644
+--- a/public/stylesheets/display.css
++++ b/public/stylesheets/display.css
+@@ -703,4 +703,9 @@ small.show-fckeditor{
+ 	width:100%;
+ 	text-align:right;
+ 	font-size:.7em;
++}
++.tags{
++	width:100%;
++	font-size:.7em;
++	text-align:right;
+ }
+\ No newline at end of file
