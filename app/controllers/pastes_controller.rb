@@ -4,6 +4,7 @@ class PastesController < ApplicationController
   # GET /pastes.xml
   def index
     unless read_fragment({})
+
       @pastes = Paste.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 4
     end
   end
