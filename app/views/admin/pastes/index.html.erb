@@ -4,7 +4,7 @@
 </div><!-- fin  -->
   <% for  paste in @pastes %>
 	<h2>Paste <%=  %></h2>
-	<%= render :partial => "layouts/paste_trim", :locals => {:paste => paste, :theme => @theme} %>
+	<%= render :partial => "layouts/paste_trim", :locals => {:paste => paste, :theme => @theme, :admin => true} %>
 
   <% end %>
 <br><br>

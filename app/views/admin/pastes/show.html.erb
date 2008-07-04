@@ -1,22 +1,27 @@
 <div style="float:right">
 	<script type="text/javascript" charset="utf-8">
 		function reload_theme(){
-			window.location="<%= paste_path.to_s+'?theme=' %>"+document.getElementById("theme").value
+			window.location="<%= admin_paste_path.to_s+'?theme=' %>"+document.getElementById("theme").value
 		}
 	</script>
 	<select id="theme" onchange="reload_theme();">
 		<%- @themes.each_pair do |val,name| %><option <%= (@theme == val) ? "selected":"" %> value="<%= val %>" ><%= name  %></option><%- end -%>
 	</select>	
 </div><!-- fin  -->
+<br><br>
+<div class="pastePreview">
 <p>
   <b>Escrito en:</b>
-  <%=h @language.name %>
+  <%=h @paste.language.name %> con <%= @paste.content.split("\n").size %> líneas
 </p>
 
 <p>
-	<%= @contenido%>
+	<%= Uv.parse(@paste.content, "xhtml", @paste.language.uv_name, true, @theme) %>
 </p>
-
+<p class="tags"><%= @paste.tag_list.blank? ? "Sin tags" : @paste.tag_list %></p>
+</div>
+<%= link_to 'Editar', edit_admin_paste_path(@paste) %> |
+<%= link_to 'Voltar á lista', admin_pastes_path %>
 
 <% content_for :lateral do %>
   <label>Pegado fai</label><br />
@@ -39,5 +44,4 @@
 <%# stat_count_helper %>
 <% end %>
 
-<%= link_to 'Edit', edit_admin_paste_path(@paste) %> |
-<%= link_to 'Back', admin_pastes_path %>
+

@@ -42,5 +42,11 @@ class ApplicationController < ActionController::Base
   			@theme = (params[:theme] if @themes.include?(params[:theme])) || "idle"
 
   end
+  def load_languages
+    unless read_fragment({})
+       @languages = Language.find :all, :order => "name"       
+    end
+  end
+  
   
 end

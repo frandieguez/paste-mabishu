@@ -1,6 +1,5 @@
 class PastesController < ApplicationController
   before_filter :load_languages, :load_themes
-  before_filter :load_themes
   # GET /pastes
   # GET /pastes.xml
   def index
@@ -12,20 +11,19 @@ class PastesController < ApplicationController
   # GET /pastes/1
   # GET /pastes/1.xml
   def show
-    @paste = Paste.find(params[:id])
-    @language = Language.find(@paste.language_id)
+    @paste = Paste.find(params[:id], :include => :language)
     @contenido =
     begin
   			Uv.parse(@paste.content.to_s, "xhtml", "actionscript", true, @theme )
   	rescue ArgumentError
-  			flash[:notice] = "non se pode elexir esa configuración"
+  			flash[:notice] = "Non se pode elexir esa configuración"
   		  Uv.parse(@paste.content.to_s, "xhtml", "actionscript", true, "blackboard")
   	end
   	
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @paste }
-      format.text { render :text => "Paste #{@paste.id} \nEscrito en: #{Language.find(@paste.language_id).name}\n------------------------------------\n\n"+@paste.content.to_s}
+      format.text { render :text => "Paste #{@paste.id} \nEscrito en: #{@paste.language.name}\n------------------------------------\n\n"+@paste.content.to_s}
     end
   end
 
@@ -54,7 +52,8 @@ class PastesController < ApplicationController
   end
  def search
   @pastes = Paste.find :all, :conditions =>"content LIKE '%#{params[:q]}%'"
-  
+  @pastes << Paste.find_tagged_with( params[:q])
+  @pastes.flatten!
   respond_to do |format|
     format.html
     format.xml { render :xml => @pastes}
@@ -62,16 +61,9 @@ class PastesController < ApplicationController
  end
  def download
    @paste = Paste.find(params[:id])
-   @lenguaje =  Language.find(@paste.language_id)
    send_data @paste.content.to_s,
-        :type => @lenguaje.mimetype,
+        :type => @paste.language.mimetype,
         :disposition => "attachment",
         :filename => "#{@paste.id}.#{@lenguaje.extension}"
- end
- private
- def load_languages
-   unless read_fragment({})
-      @languages = Language.find :all, :order => "name"       
-   end
  end
 end

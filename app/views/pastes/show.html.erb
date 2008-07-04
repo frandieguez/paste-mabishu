@@ -10,12 +10,13 @@
 </div><!-- fin  -->
 <p>
   <b>Escrito en:</b>
-  <%=h @language.name %>
+  <%h @paste.language.name %>
 </p>
 
 <p>
 	<%= @contenido%>
 </p>
+<p class="tags"><%= @paste.tag_list.blank? ? "Sin tags" : @paste.tag_list %></p>
 
 
 <% content_for :lateral do %>

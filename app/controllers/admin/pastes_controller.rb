@@ -12,14 +12,6 @@ class Admin::PastesController < ApplicationController
   # GET /pastes/1.xml
   def show
     @paste = Paste.find(params[:id])
-    @language = Language.find(@paste.language_id).name
-    @contenido =
-    begin
-  			Uv.parse(@paste.content.to_s, "xhtml", "actionscript", true, @theme )
-  	rescue ArgumentError
-  			flash[:notice] = "non se pode elexir esa configuración"
-  		  Uv.parse(@paste.content.to_s, "xhtml", "actionscript", true, "blackboard")
-  	end
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @paste }
@@ -31,10 +23,11 @@ class Admin::PastesController < ApplicationController
   
   def update
     @paste = Paste.find(params[:id])
-
+    @tags = params[:paste][:tag_list]
     respond_to do |format|
-      if @paste.update_attributes(params[:pagina])
+      if @paste.update_attributes(params[:paste])
         flash[:notice] = 'O teu paste foi actualizado correctamente.'
+        @paste.update_attributes(:tag_list => @tags)
         format.html { redirect_to([:admin,@paste]) }
         format.xml  { head :ok }
       else
@@ -77,7 +70,8 @@ class Admin::PastesController < ApplicationController
   end
   def search
    @pastes = Paste.find :all, :conditions =>"content LIKE '%#{params[:q]}%'"
-
+   @pastes << Paste.find_tagged_with( params[:q])
+   @pastes.flatten!
    respond_to do |format|
      format.html
      format.xml { render :xml => @pastes}

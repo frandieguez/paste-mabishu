@@ -704,3 +704,8 @@ small.show-fckeditor{
 	text-align:right;
 	font-size:.7em;
 }
+.tags{
+	width:100%;
+	font-size:.7em;
+	text-align:right;
+}

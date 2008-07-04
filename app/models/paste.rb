@@ -1,3 +1,5 @@
 class Paste < ActiveRecord::Base
-  has_one :language
+  belongs_to :language
+  acts_as_taggable
+  
 end
