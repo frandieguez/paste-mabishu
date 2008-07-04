@@ -12,16 +12,14 @@
 
 	<% for pagina in @paginas %>
 	  <tr>
-	    <td><%=h pagina.title %></td>
+	    <td><%= link_to pagina.title, [:admin,pagina] %></td>
 	    <td><%=h truncate pagina.content, 20 %></td>
 		<td><%= pagina.link %></td>
-	    <td class="acciones">
-
-	    	<table>
+	    <td>
+	    	<table class="acciones" width="100%">
 				<tr>
-					<td><%= link_to (image_tag "zoom.gif"), [:admin,pagina] %></td>
-				    <td><%= link_to (image_tag "edit.jpg"), edit_admin_pagina_path(pagina) %></td>
-				    <td><%= link_to "<image src='/images/master-public-images-typus_trash.gif'/>", [:admin,pagina], :confirm => 'Are you sure?', :method => :delete %></td>
+				    <td><%= link_to (image_tag "edit.jpg")+"Editar", edit_admin_pagina_path(pagina) %></td>
+				    <td><%= link_to "<image src='/images/master-public-images-typus_trash.gif'/>Eliminar", [:admin,pagina], :confirm => 'Are you sure?', :method => :delete %></td>
 				</tr>
 	    	</table>
 	    </td>

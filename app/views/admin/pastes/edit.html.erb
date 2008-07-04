@@ -1,3 +1,4 @@
+<%= javascript_include_tag "fckeditor/fckeditor" %>
 <h1>Editing paste</h1>
 
 <% form_for([:admin,@paste]) do |f| %>
@@ -5,8 +6,15 @@
 
   <p>
     <%= f.label :content %><br />
-    <%= f.text_area :content %>
+    <% if params[:bigeditor] %>
+    	<%=	fckeditor_textarea( "paste", "content", :height => '400')%>
+		<small class="show-fckeditor"><%= link_to "Agochar editor enriquecido", new_admin_paste_path %></small>
+	<% else %>
+		<%=f.text_area :content%>
+		<small class="show-fckeditor"><%= link_to "Amosar editor enriquecido", new_admin_paste_path + "?bigeditor=1" %></small>
+    <% end %>	
   </p>
+
   <p style="float:left;margin-right:15px">
     <%= f.label :language_id %><br />
 	<%= collection_select("paste","language_id", @languages, "id", "name") %>

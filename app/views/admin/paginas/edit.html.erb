@@ -1,3 +1,4 @@
+<%= javascript_include_tag "fckeditor/fckeditor" %>
 <h1>Editando página: <strong><%= @pagina.title.titleize %></strong></h1>
 
 <% form_for([:admin,@pagina]) do |f| %>
@@ -9,16 +10,21 @@
   </p>
   <p>
     <%= f.label :content %><br />
-    <%= f.text_area :content %>
+    <% if params[:bigeditor] %>
+    	<%=	fckeditor_textarea( "pagina", "content", :height => '400')%>
+		<small class="show-fckeditor"><%= link_to "Agochar editor enriquecido", new_admin_paste_path %></small>
+	<% else %>
+		<%=f.text_area :content%>
+		<small class="show-fckeditor"><%= link_to "Amosar editor enriquecido", new_admin_paste_path + "?bigeditor=1" %></small>
+    <% end %>	
   </p>
   <p>
     <%= f.label :link %><br />
     <%= f.text_field :link %>
   </p>
   <p>
-    <%= f.submit "Update" %>
+    <%= f.submit "Actualizar" %>
   </p>
 <% end %>
 
-<%= link_to 'Show', admin_pagina_path(@pagina) %> |
 <%= link_to 'Back', admin_paginas_path %>

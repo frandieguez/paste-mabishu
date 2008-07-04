@@ -1,12 +1,7 @@
-<p>
-  <b>Title:</b>
-  <%=h @pagina.title %>
-</p>
+<h1>  <%=h @pagina.title %></h1>
 
-<p>
-  <b>Content:</b>
-  <%=h @pagina.content %>
-</p>
+  <%= @pagina.content %>
+
 
 
 <%= link_to 'Edit', edit_admin_pagina_path(@pagina) %> |

@@ -673,8 +673,10 @@ color:#c00;
 tr.header{
 	background-color:#ccc;
 }
-.listado .acciones{
-	width:75px;
+.acciones a{
+	display:block;
+	border:1px solid green;
+	text-decoration:none;
 }
 .listado *{
 	border:0;
