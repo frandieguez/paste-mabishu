@@ -1,19 +1,20 @@
-<h1>Resultados de la búsqueda para la cadena "<%= params[:q] %>" - <small>Se ha encontrado <%= @pastes.size %> paste</small></h1>
+<h1>Resultados da procura "<%= params[:q] %>"</h1>
 
 <% if params[:q].blank? %>
-	No has proporcionado una cadena de búsqueda
+		Non proporcionaches un criterio de procura.
 <% else %>
-
+	<small>Atoparonse <%= @pastes.size %> paste</small>
 	<% if !@pastes.blank? %>
 	  <% for paste in @pastes %>
-	  	<%= render :partial => "layouts/paste_trim", :locals => { :paste => paste} %>
+	  	<%= render :partial => "layouts/paste_trim", :locals => { :paste => paste, :theme => @theme} %>
 	  <% end %>
 	<% else %>
 		<div class="pastePreview">
-			No hay pastes nuevos
+			Non hay pastes con ese criterio
 		</div><!-- fin  -->
 	<% end %>
-
-
 <%end %>
 
+<% content_for :lateral do %>
+  <%= render :partial => "layouts/stats_time" %>
+<% end %>

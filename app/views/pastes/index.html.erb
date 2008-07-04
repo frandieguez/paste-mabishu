@@ -4,6 +4,7 @@
 	</div><!-- fin  -->
 	
 	<% if !@pastes.blank? %>
+
 	  <% for paste in @pastes %>
 	  	<%= render :partial => "layouts/paste_trim", :locals => { :paste => paste, :theme => @theme } %>
 	  <% end %>

@@ -25,7 +25,7 @@ class PastesController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @paste }
-      format.text { render :text => "Paste #{@paste.id} \nEscrito en :#{Language.find(@paste.language_id).name}\n------------------------------------\n\n"+@paste.content.to_s}
+      format.text { render :text => "Paste #{@paste.id} \nEscrito en: #{Language.find(@paste.language_id).name}\n------------------------------------\n\n"+@paste.content.to_s}
     end
   end
 
@@ -62,6 +62,7 @@ class PastesController < ApplicationController
  end
  def download
    @paste = Paste.find(params[:id])
+   @lenguaje =  Language.find(@paste.language_id)
    send_data @paste.content.to_s,
         :type => @lenguaje.mimetype,
         :disposition => "attachment",

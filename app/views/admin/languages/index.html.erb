@@ -1,5 +1,5 @@
 <h1>Xestión de Linguaxes</h1>
-
+<% if !@languages.blank? %>
 <table width="100%" class="listado">
   <tr class="header">
     <th>Nome</th>
@@ -28,6 +28,11 @@
 <% end %>
 </table>
 <br>
+<% else %>
+	<p>Non hay ningunha linguaxe dispoñíbel</p>
+<% end %>
+
+
 <div>Engade unha nova linguaxe:
 	<% form_for([:admin,@language], html_options={:style=> "display:inline"}) do |f| %>
   		<%= f.error_messages %>

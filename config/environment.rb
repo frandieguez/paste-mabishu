@@ -19,9 +19,7 @@ Rails::Initializer.run do |config|
   # config.active_record.schema_format = :sql
   # config.active_record.observers = :cacher, :garbage_collector
 
-  #require "coderay"
   require "rubygems"
   require "uv"
-  #require 'will_paginate'
 
 end

@@ -1,10 +1,22 @@
+<div style="float:right">
+	<script type="text/javascript" charset="utf-8">
+		function reload_theme(){
+			window.location="<%= paste_path.to_s+'?theme=' %>"+document.getElementById("theme").value
+		}
+	</script>
+	<select id="theme" onchange="reload_theme();">
+		<%- @themes.each_pair do |val,name| %><option <%= (@theme == val) ? "selected":"" %> value="<%= val %>" ><%= name  %></option><%- end -%>
+	</select>	
+</div><!-- fin  -->
 <p>
   <b>Escrito en:</b>
-  <%=h @language %>
+  <%=h @language.name %>
 </p>
+
 <p>
-  <%=h @paste.content %>
+	<%= @contenido%>
 </p>
+
 
 <% content_for :lateral do %>
   <label>Pegado fai</label><br />

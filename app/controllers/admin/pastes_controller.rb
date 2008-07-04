@@ -13,7 +13,13 @@ class Admin::PastesController < ApplicationController
   def show
     @paste = Paste.find(params[:id])
     @language = Language.find(@paste.language_id).name
-
+    @contenido =
+    begin
+  			Uv.parse(@paste.content.to_s, "xhtml", "actionscript", true, @theme )
+  	rescue ArgumentError
+  			flash[:notice] = "non se pode elexir esa configuración"
+  		  Uv.parse(@paste.content.to_s, "xhtml", "actionscript", true, "blackboard")
+  	end
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @paste }
