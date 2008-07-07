@@ -4,7 +4,6 @@ class PastesController < ApplicationController
   # GET /pastes.xml
   def index
     unless read_fragment({})
-
       @pastes = Paste.find(:all, :order => "created_at DESC").paginate :page => params[:page], :per_page => 4
     end
   end
@@ -15,10 +14,13 @@ class PastesController < ApplicationController
     @paste = Paste.find(params[:id], :include => :language)
     @contenido =
     begin
-  			Uv.parse(@paste.content.to_s, "xhtml", "actionscript", true, @theme )
+  			Uv.parse(@paste.content.to_s, "xhtml", @paste.language_id, true, @theme )
   	rescue ArgumentError
   			flash[:notice] = "Non se pode elexir esa configuración"
   		  Uv.parse(@paste.content.to_s, "xhtml", "actionscript", true, "blackboard")
+		rescue NoMethodError
+		  flash[:notice] = "Non se pode elexir esa configuración"
+		  Uv.parse(@paste.content.to_s, "xhtml", "actionscript", true, @theme)
   	end
   	
     respond_to do |format|

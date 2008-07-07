@@ -1,36 +1,27 @@
+#Instalar las librerías de xmpp para ruby
+
+
+git clone git://github.com/ln/xmpp4r.git xmpp4r
+cd xmpp4r
+rake gem:install
+sudo gem install xmpp4r-simple
+
+
 #Instalar onigurura para ter syntax highlighting con Ultraviolet
 
 
-$ wget http://www.geocities.jp/kosako3/oniguruma/archive/onig-5.9.1.tar.gz
-$ tar zxvf onig-5.9.1.tar.gz 
-$ cd onig-5.9.1/
-$ ./configure
-$ make
-$ sudo make install
+wget http://www.geocities.jp/kosako3/oniguruma/archive/onig-5.9.1.tar.gz
+tar zxvf onig-5.9.1.tar.gz 
+cd onig-5.9.1/
+./configure
+make
+sudo make install
 
-Installing Ultraviolet and dependencies
+# Instalar gema Ultraviolet
+sudo gem install ultraviolet
 
-Next install Ultraviolet with RubyGems:
 
-$ sudo gem install -r ultraviolet
-$ irb
-
-require 'rubygems'
-require 'uv'
-puts Uv.syntaxes.join( "\n" )
-puts Uv.themes.join( "\n" )
-input = <<HTML<<HTML
-<html>
-  <body>
-  </body>
-</html>
-HTMLHTML
-
-puts Uv.parse( input, "xhtml", "html", true, "slush_poppies")
-
-Problems
-
-You might get this error:
+Si tienes este error:
 
 require 'uv'
 LoadError: libonig.so.2: cannot open shared object file: No such file or directory - /usr/lib/ruby/gems/1.8/gems/oniguruma-1.1.0/lib/oregexp.so

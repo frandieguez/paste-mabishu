@@ -3,6 +3,7 @@ config/mongrel_cluster.yml
 config/database.yml
 log/*.log
 tmp/**/*
+config/xmpp-bot.yml
 **/*.pid
 db/*.sqlite3
 **/*/\._*

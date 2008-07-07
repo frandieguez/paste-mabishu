@@ -10,11 +10,11 @@
 </div><!-- fin  -->
 <p>
   <b>Escrito en:</b>
-  <%h @paste.language.name %>
+  <%h ((@paste.language).blank?) ? Language.find( :first).name : @paste.language.name %>
 </p>
 
 <p>
-	<%= @contenido%>
+	<%= @contenido %>
 </p>
 <p class="tags"><%= @paste.tag_list.blank? ? "Sin tags" : @paste.tag_list %></p>
 
