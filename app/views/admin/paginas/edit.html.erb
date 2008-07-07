@@ -12,10 +12,10 @@
     <%= f.label :content %><br />
     <% if params[:bigeditor] %>
     	<%=	fckeditor_textarea( "pagina", "content", :height => '400')%>
-		<small class="show-fckeditor"><%= link_to "Agochar editor enriquecido", new_admin_paste_path %></small>
+		<small class="show-fckeditor"><%= link_to "Agochar editor enriquecido", edit_admin_pagina_path %></small>
 	<% else %>
 		<%=f.text_area :content%>
-		<small class="show-fckeditor"><%= link_to "Amosar editor enriquecido", new_admin_paste_path + "?bigeditor=1" %></small>
+		<small class="show-fckeditor"><%= link_to "Amosar editor enriquecido", edit_admin_pagina_path + "?bigeditor=1" %></small>
     <% end %>	
   </p>
   <p>
