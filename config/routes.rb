@@ -20,6 +20,5 @@ ActionController::Routing::Routes.draw do |map|
 
   map.connect ':controller/:id/:action'
   map.connect ':controller/:action/:id.:format'
-  map.connect "search", :controller => "pastes", :action => "search"
   map.connect ':pagina', :controller => "paginas", :action => "show"
 end
