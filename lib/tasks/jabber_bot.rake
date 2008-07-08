@@ -43,7 +43,9 @@ task :jabber_bot => :environment do
             messenger.deliver(msg.from, "Something is technically wrong at the ") 
             puts e.inspect
             #logger.warn e.inspect
-          end 
+          end
+          
         end
+        sleep 1
     end
 end
