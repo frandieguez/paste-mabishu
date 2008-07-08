@@ -47,6 +47,9 @@ class ApplicationController < ActionController::Base
        @languages = Language.find :all, :order => "name"       
     end
   end
+  def admin
+    @admin = false
+  end
   
   
 end

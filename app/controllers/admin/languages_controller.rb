@@ -1,6 +1,6 @@
 class Admin::LanguagesController < ApplicationController
   layout "admin"
-  before_filter :load_syntaxes
+  before_filter :load_syntaxes, :admin
   # GET /languages
   # GET /languages.xml
   def index
@@ -76,5 +76,8 @@ class Admin::LanguagesController < ApplicationController
   private
   def load_syntaxes
     @syntaxes = Uv.syntaxes
+  end
+  def admin
+    @admin = true
   end
 end

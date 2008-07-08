@@ -1,5 +1,5 @@
 class PastesController < ApplicationController
-  before_filter :load_languages, :load_themes
+  before_filter :load_languages, :load_themes, :admin
   # GET /pastes
   # GET /pastes.xml
   def index

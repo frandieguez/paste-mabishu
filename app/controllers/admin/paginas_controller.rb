@@ -1,5 +1,6 @@
 class Admin::PaginasController < ApplicationController
   layout "admin"
+  before_filter :admin
   # GET /paginas
   # GET /paginas.xml
   def index
@@ -78,4 +79,9 @@ class Admin::PaginasController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  private
+  def admin
+    @admin = true
+  end
+  
 end

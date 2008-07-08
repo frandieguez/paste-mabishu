@@ -1,4 +1,5 @@
 class LanguagesController < ApplicationController
+  before_filter :admin
   # GET /languages
   # GET /languages.xml
   def index

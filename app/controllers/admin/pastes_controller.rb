@@ -1,7 +1,6 @@
 class Admin::PastesController < ApplicationController
   layout "admin"
-  before_filter :load_languages
-  before_filter :load_themes
+  before_filter :load_languages, :load_themes, :admin
   # GET /pastes
   # GET /pastes.xml
   def index
@@ -80,5 +79,8 @@ class Admin::PastesController < ApplicationController
  private
  def load_languages
    @languages = Language.find :all, :order => "name"
+ end
+ def admin
+   @admin = true
  end
 end
