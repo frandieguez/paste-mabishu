@@ -2,6 +2,7 @@ require 'rubygems'
 require 'xmpp4r-simple'
 task :jabber_bot => :environment do
     BOT_CONFIG = YAML.load_file("#{RAILS_ROOT}/config/xmpp-bot.yml")[RAILS_ENV]
+    Jabber::debug = true if ENV["DEBUG"] == true
     messenger = Jabber::Simple.new(BOT_CONFIG["xmpp_username"], BOT_CONFIG["xmpp_password"])
     puts "Server escuchando conversaciones..."
     while true
