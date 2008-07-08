@@ -10,7 +10,7 @@
 </div><!-- fin  -->
 <p>
   <b>Escrito en:</b>
-  <%h ((@paste.language).blank?) ? Language.find( :first).name : @paste.language.name %>
+  <%= h (@paste.language.blank?) ? Language.find( :first).name : @paste.language.name %>
 </p>
 
 <p>
