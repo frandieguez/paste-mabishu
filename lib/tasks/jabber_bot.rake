@@ -2,14 +2,14 @@ require 'rubygems'
 require 'xmpp4r-simple'
 task :jabber_bot => :environment do
     BOT_CONFIG = YAML.load_file("#{RAILS_ROOT}/config/xmpp-bot.yml")[RAILS_ENV]
-    Jabber::debug = true if ENV["DEBUG"] == true
+    Jabber::debug = true if ENV["DEBUG"] == "true"
     messenger = Jabber::Simple.new(BOT_CONFIG["xmpp_username"], BOT_CONFIG["xmpp_password"])
     puts "Server escuchando conversaciones..."
     while true
        messenger.received_messages do |msg|
          begin
           user = true#User.find_by_im_name(msg.from)
-          puts "Send from "+ msg.from.node+"@"+msg.from.domain + "\n \"#{msg.body}\"" if ENV["DEBUG"] == true
+          puts "Send from "+ msg.from.node+"@"+msg.from.domain + "\n \"#{msg.body}\"" if ENV["DEBUG"] == "true"
           if user
             case msg.body
             when /^[l|L]anguages/i
@@ -18,7 +18,7 @@ task :jabber_bot => :environment do
               messenger.deliver(msg.from, "Valid commands are:\n\tpaste:language_code text_of_you_paste ....   => for post your paste on paste-mabishu\n\tlist? => for listing all your pastes on the system\n\tlanguages => list all the the available languages for paste")  
             when /^paste:/i
               matches = msg.body.scan(/^paste:([a-z_\.-]*) (.*)/mi).flatten
-              puts "Matches: "+matches[0]+"----"+matches[1] if ENV["DEBUG"]==true
+              puts "Matches: "+matches[0]+"----"+matches[1] if ENV["DEBUG"] == "true"
 
               paste_content = matches[1]
               language = Language.find_by_uv_name(matches[0]).id
