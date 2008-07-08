@@ -24,7 +24,7 @@ task :jabber_bot => :environment do
               @p = Paste.create( :content=> paste_content, :language_id => language) if language
               #p = true # ñapa temporal
               response = if (@p and matches.size==2)
-                "Thanks #{msg.from.node+"@"+msg.from.domain}, your paste has been upload, if you want to see go to http://paste.mabishu.com/pastes/#{@p.id}"
+                "Thanks #{msg.from.node+"@"+msg.from.domain}, your paste has been upload, if you want to see it go to http://paste.mabishu.com/pastes/#{@p.id}"
               else
                 "For an unknown reason the paste haven't been upload to your profile, please try again or contact using the contact from http://paste.mabishu.com/contact"
               end
