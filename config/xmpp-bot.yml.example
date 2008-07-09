@@ -1,0 +1,10 @@
+# config/config.yml
+development:
+  xmpp_username: your_bot_id@jabber.com
+  xmpp_password: you_password
+
+test:
+  development
+
+production:
+  development

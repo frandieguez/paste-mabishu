@@ -13,21 +13,7 @@ For the installation just need to ensure to acomplish the next steps, let's go:
 			rake gem:install
 			sudo gem install xmpp4r-simple
 		
-		Next is configure the XMPP bot for this you will have to have a Jabber/Gmail account and tell the application to use this account, for this create the config file *xmpp-bot.yml* at the config directory like the next example:
-		
-		# config/config.yml
-		development:
-		  xmpp_username: your_account@jabber.tdl
-		  xmpp_password: your_password
-
-		test:
-		  development
-
-		production:
-		 development
-			
-			
-	
+		Next is configure the XMPP bot for this you would have a Jabber/Gmail account and tell the application to use this account, for this just rename de config/xmpp-bot.yml.example to config/xmpp-bot.yml and configure it with your jabber id.
 	
 	#Install Ultraviolet for syntax highlighting
 		
@@ -44,29 +30,6 @@ For the installation just need to ensure to acomplish the next steps, let's go:
 			
 			sudo gem install ultraviolet
 
-		If you have the next error:
-		
-			require 'uv'
-			LoadError: libonig.so.2: cannot open shared object file: No such file or directory - /usr/lib/ruby/gems/1.8/gems/oniguruma-1.1.0/lib/oregexp.so
-
-				This message is a bit confusing. It means Ruby can’t find libonig.so.2, not oregexp.so as you could believe.
-
-				To fix this, check if the library has been linked:
-
-				$ ldconfig -p|grep libonig
-
-				If the library is not linked, add the path to the directory where the file is located to /etc/ld.so.conf:
-
-				/usr/local/lib
-
-				include /etc/ld.so.conf.d/*.conf
-
-				Then run:
-
-				$ ldconfig
-
-				Another way of fixing this problem would be to tell the build script to install it to /usr/lib.
-				Tagged onigurama, ultraviolet, ruby, ubuntu, install, oniguruma
 ## Up and Running
 	
 	Start you app server as you do normally
