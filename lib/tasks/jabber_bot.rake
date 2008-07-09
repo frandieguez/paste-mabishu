@@ -19,7 +19,7 @@ task :jabber_bot => :environment do
               messenger.deliver(msg.from, "Valid commands are:\n\tpaste:language_code text_of_you_paste ....   => for post your paste on paste-mabishu\n\tlist? => for listing all your pastes on the system\n\tlanguages => list all the the available languages for paste")  
             when /^paste:/i
               matches = msg.body.scan(/^paste:([a-z_\.-]*) (.*)/mi).flatten
-              puts "Matches: "+matches[0]+"----"+matches[1] if ENV["DEBUG"]==true
+              puts "Matches: "+matches[0]+"----"+matches[1] if ENV["DEBUG"] == "true"
 
               paste_content = matches[1]
               language = Language.find_by_uv_name(matches[0]).id
