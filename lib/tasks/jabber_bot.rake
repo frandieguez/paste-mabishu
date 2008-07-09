@@ -2,14 +2,15 @@ require 'rubygems'
 require 'xmpp4r-simple'
 task :jabber_bot => :environment do
     BOT_CONFIG = YAML.load_file("#{RAILS_ROOT}/config/xmpp-bot.yml")[RAILS_ENV]
-    Jabber::debug = true if ENV["DEBUG"] == true
+    Jabber::debug = true if ENV["DEBUG"] == "true"
     messenger = Jabber::Simple.new(BOT_CONFIG["xmpp_username"], BOT_CONFIG["xmpp_password"])
+    puts "DEBUG: \"#{ENV["DEBUG"].class}\""
     puts "Server escuchando conversaciones..."
     while true
        messenger.received_messages do |msg|
          begin
           user = true#User.find_by_im_name(msg.from)
-          puts "Send from "+ msg.from.node+"@"+msg.from.domain + "\n \"#{msg.body}\"" if ENV["DEBUG"] == true
+          puts "Send from "+ msg.from.node+"@"+msg.from.domain + "\n \"#{msg.body}\"" if ENV["DEBUG"] == "true"
           if user
             case msg.body
             when /^[l|L]anguages/i
