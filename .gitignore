@@ -10,3 +10,5 @@ db/*.sqlite3
 public/cache/**
 public/cache/**/*
 **/*.sqlite3
+Capfile
+config/deploy.rb
