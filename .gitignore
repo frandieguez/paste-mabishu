@@ -1,4 +1,4 @@
-**/**/.DS_Store
+**/*/.DS_Store
 config/mongrel_cluster.yml
 config/database.yml
 log/*.log

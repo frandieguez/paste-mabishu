@@ -1,5 +1,5 @@
 class PastesController < ApplicationController
-  before_filter :load_languages, :load_themes, :admin
+  before_filter :load_themes, :admin
   # GET /pastes
   # GET /pastes.xml
   def index
@@ -34,6 +34,7 @@ class PastesController < ApplicationController
   # GET /pastes/new.xml
   def new
     @paste = Paste.new
+    @languages = Language.find :all
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @paste }

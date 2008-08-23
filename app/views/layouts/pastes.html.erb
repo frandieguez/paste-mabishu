@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head id="head">
+  	<title>Pastie</title>
+	<meta name="author" content="Fran Di&eacute;guez"/>
+	<meta name="organization" content="Mabishu St."/>
+	<meta name="keywords" content="paste, source, code, share, mabishu, <%# Language.find(:all) %>" />
+	<meta name="description" content="Pastes - web service for posting your source code" />
+	<%= stylesheet_link_tag "templates/blackboard" %>
+	<%= stylesheet_link_tag "templates/active4d.css" %>
+	<%= stylesheet_link_tag "templates/all_hallows_eve.css" %>
+	<%= stylesheet_link_tag "templates/amy.css" %>
+	<%= stylesheet_link_tag "templates/blackboard.css" %>
+	<%= stylesheet_link_tag "templates/brilliance_black.css" %>
+	<%= stylesheet_link_tag "templates/brilliance_dull.css" %>
+	<%= stylesheet_link_tag "templates/cobalt.css" %>
+	<%= stylesheet_link_tag "templates/dawn.css" %>
+	<%= stylesheet_link_tag "templates/eiffel.css" %>
+	<%= stylesheet_link_tag "templates/espresso_libre.css" %>
+	<%= stylesheet_link_tag "templates/idle.css" %>
+	<%= stylesheet_link_tag "templates/iplastic.css" %>
+	<%= stylesheet_link_tag "templates/lazy.css" %>
+	<%= stylesheet_link_tag "templates/mac_classic.css" %>
+	<%= stylesheet_link_tag "templates/magicwb_amiga.css" %>
+	<%= stylesheet_link_tag "templates/pastels_on_dark.css" %>
+	<%= stylesheet_link_tag "templates/slush_poppies.css" %>
+	<%= stylesheet_link_tag "templates/spacecadet.css" %>
+	<%= stylesheet_link_tag "templates/sunburst.css" %>
+	<%= stylesheet_link_tag "templates/twilight.css" %>
+	<%= stylesheet_link_tag "templates/zenburnesque.css" %>
+	
+	<%= stylesheet_link_tag "display" %>
+    <%= javascript_include_tag :defaults %>
+</head>
+<body>
+	<div id="topnews" style="">
+		<p>
+			 Pastie agora <a href="http://www.mabishu.com/project/pastie" class="subtle">con cores</a> e resaltado de sintaxe.  <a href="http://www.mabishu.com/blog/contact">Feedback?</a>
+		</p>
+	</div>
+
+	<div id="header">
+
+		<ul id="nav">
+			<li class="hot"><%= link_to "Nova", new_paste_path %></li>
+			<li style="display:none;" class="loggedinonly"><a href="" id="mine_nav_link">Miñas</a></li>
+			<li><%= link_to "Todas", pastes_path %></li>
+			<li><a href="#" onclick="$('search').show(); $('search_box').focus();">Procurar</a>
+				</li>
+			<li id="search" style="display:none;">
+				<form action="/search">
+					<input type="text" style="" size="15" id="search_box" name="q" value="">
+				</form>
+			</li>
+
+			<li class='active'><a href="/why/">Porqué</a></li>
+			<li ><a href="/help/">Axuda</a></li>
+		
+			<li class="login loggedinonly" style="display:none;" id="login_nick"></li>
+		
+		</ul>
+
+	  <script language="javascript">logged_in_setup();</script>
+
+		<h1>
+			<%= link_to ((image_tag "pastie.gif"),root_path) %>
+			Paste
+			<span class="sub" style="color:#777">
+				<%= link_to "Olla as que temos", pastes_path %>
+				ou <a style="color:cf6; text-decoration:underline" href="http://www.mabishu.com/blog">le o meu blogue</a>
+			</span>
+		</h1>
+	
+	
+	</div>
+
+	<!-- <div id="news">
+	<p style="margin-bottom:0;">Now powered by <a href="http://www.sphinxsearch.com/">Sphinx</a>... Search doesn't suck anymore. :-)  Give it a spin.</p> 
+	</div> -->
+
+	<div id="container">
+
+
+		<div id="content">
+			<%= yield %>
+		</div><!-- content -->
+	
+		<div id="right">
+			
+			<%= yield(:lateral) %>
+		</div><!-- right -->
+	
+		<br style="clear:both;" />
+	
+	</div><!-- container -->
+
+	<div id="footer">
+		<p class="legal">
+			<a href="/legal/" style="color:#369;">Legal</a>
+		</p>
+		<p class="disclaim">
+			<strong>Emprega Paste para salvar a humanidade,<br /> no andes a tocar os juebos!</strong>
+		</p>
+		<p class="credit">
+		  Creado por <a href="http://www.mabishu.com/">Fran Di&eacute;guez</a> basadisimo en <a href="http://pastie.org/">pastie.org</a>
+		</p>
+    	
+		<br style="clear:both;" />
+	</div>
+</body>
+</html>

@@ -9,15 +9,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080704113051) do
+ActiveRecord::Schema.define(:version => 20080823092310) do
 
   create_table "languages", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "mimetype",   :default => "text/plain"
+    t.string   "mimetype",     :default => "text/plain"
     t.string   "extension"
     t.string   "uv_name"
+    t.integer  "pastes_count"
   end
 
   create_table "paginas", :force => true do |t|

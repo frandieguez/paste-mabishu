@@ -1,14 +1,13 @@
 <% cache(:action_suffix => "stats-languages") do %>
 <h3>Linguaxes <span>(totais)</span></h3>
+	<% @languages = Language.find(:all) %>
 	<% if !@languages.blank? %>
 	<table class="stats">
 	  <% for language in @languages %>
-	    
 	    	<tr>
 				<td class="l"><%= language.name %></td>
-				<td><%= Language.count_pastes(language.name).inspect %></td>
+				<td><%= language.pastes.size %></td>
 			</tr>
-
 	  <% end %>
     </table>
 	<% else %>
