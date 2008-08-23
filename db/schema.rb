@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20080823092310) do
+ActiveRecord::Schema.define(:version => 20080823104842) do
 
   create_table "languages", :force => true do |t|
     t.string   "name"
@@ -48,6 +48,18 @@ ActiveRecord::Schema.define(:version => 20080823092310) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
+  end
+
+  create_table "typus_users", :force => true do |t|
+    t.string   "email"
+    t.string   "salt"
+    t.string   "crypted_password"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.boolean  "status",           :default => false
+    t.string   "roles"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
