@@ -1,0 +1,28 @@
+<% content_for :sidebar do %>
+  <%= typus_block("index_sidebar") || actions %>
+  <%= search %>
+  <%= filters %>
+<% end %>
+
+<h2><%= link_to "Dashboard", typus_dashboard_url %> &rsaquo; <%= params[:model].titleize %> <% if request.env['QUERY_STRING'] %><small><%= link_to "Remove filter" %></small><% end %></h2>
+
+<%= typus_block("index_top") %>
+
+<div id="list">
+
+  <% if @items.count > 0 -%>
+    <%= typus_table %>
+    <%= render :partial => 'pagination' if @items.prev || @items.next %>
+  <% else %>
+    <div class="box" id="empty">
+      <% if @model.count == 0 %>
+        <p>There are no entries.</p>
+      <% else %>
+        <p>There are no entries under this filter.</p>
+      <% end %>
+    </div>
+  <% end %>
+
+</div>
+
+<%= typus_block("index_bottom") %>

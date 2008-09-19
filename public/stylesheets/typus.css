@@ -1,0 +1,509 @@
+/* ----------------------------------------------------------
+Title:     Typus
+Details:   Master styles for Typus
+Author:    fesplugas@intraducibles.net
+Updated:   March 2008
+---------------------------------------------------------- */
+
+/* reset all styles
+---------------------------------------------------------- */
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+/* typography definition
+---------------------------------------------------------- */
+
+h1 { font-size: 2em; line-height: 1; margin-bottom: 0.5em; }
+h2 { font-size: 1.5em; margin-bottom: 0.75em; }
+h3 { font-size: 1.5em; line-height: 1; margin-bottom: 1em; }
+h4 { font-size: 1.2em; line-height: 1.25; margin-bottom: 1.25em; height: 1.25em; }
+h5 { font-size: 1em; font-weight: bold; margin-bottom: 1.5em; }
+h6 { font-size: 1em; font-weight: bold; }
+
+h1 img, h2 img, h3 img, h4 img, h5 img, h6 img { margin: 0; }
+
+code { font-size: 1.2em; }
+
+/* html
+---------------------------------------------------------- */
+
+html {
+  height: 100%;
+  margin-bottom: 1px;
+  background: #000;
+}
+
+/* body
+---------------------------------------------------------- */
+
+body {
+  color: #000;
+  font-family: "Lucida Grande", "Bitstream Vera Sans", Helvetica, Arial, sans-serif;
+  font-size: 75%;
+}
+
+/* links
+---------------------------------------------------------- */
+
+a, 
+a:visited,
+a:link {
+  color: #000;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #333;
+  text-decoration: underline;
+}
+
+a.on {
+  color: #333;
+  text-decoration: underline;
+}
+
+/* header
+---------------------------------------------------------- */
+
+#header {
+  color: #FFF;
+  background: #000;
+  padding: 0.75em 1.5em 0.25em 1.5em;
+}
+
+#header h1 {
+  color: #FFF;
+  font-size: 2em;
+  font-weight: normal;
+  margin: 0em 0em 0.25em 0em;
+}
+
+#header h1 a,
+#header h1 a:visited,
+#header h1 a:active,
+#header h1 a:link {
+  color: #FFF;
+  text-decoration: none;
+}
+
+#header a {
+  color: #FFF;
+}
+
+#header .left {
+  float: left;
+}
+
+#header .right {
+  float: right;
+  margin-top: 0.5em;
+}
+
+#header .right li {
+  list-style: none;
+  display: inline;
+  padding: 0em 0em 0em 1em;
+}
+
+/* wrapper
+---------------------------------------------------------- */
+
+#wrapper {
+  background: #FFF;
+  border: 0px;
+  min-height: 400px;
+}
+
+/* content
+---------------------------------------------------------- */
+
+#content {
+  padding: 1.5em 1.5em;
+  margin: 0em 25em 0em 0em;
+}
+
+#content h2 {
+  margin: 0px 0px 10px 0px;
+}
+
+#content h2 a {
+  font-weight: bold;
+}
+
+#content p {
+  margin: 1em 0em;
+}
+
+/* sidebar
+---------------------------------------------------------- */
+
+#sidebar {
+  float: right;
+  margin: 1.5em;
+  width: 20em;
+}
+
+  #sidebar label {
+    font-size: 15px;
+  }
+
+  #sidebar h2 {
+    margin: 0px 0px 10px 0px;
+  }
+
+  #sidebar h3 {
+    margin: 0px 0px 15px 0px;
+  }
+
+  #sidebar p {
+    margin: 0px 0px 15px 0px;
+  }
+
+  #sidebar p a {
+    text-decoration: underline;
+  }
+
+  #sidebar form {
+    margin: 0px 0px 15px 0px;
+  }
+
+  #sidebar ul {
+    margin: 0px 0px 15px 0px;
+  }
+
+  #sidebar li {
+    list-style: none;
+  }
+
+/* footer
+---------------------------------------------------------- */
+
+#footer {
+  border: 2px solid #000;
+}
+
+/* form
+---------------------------------------------------------- */
+
+form {
+}
+
+textarea, select, input { font-size: 1.20em; border: 1px solid #999; }
+
+input.button {
+  font-size: 1em;
+  background: #408BB6;
+  border: 2px solid #408BB6;
+  color: #FFF;
+  font-weight: bold;
+  padding: 5px;
+}
+
+input.button:hover { background: #59A5D1; }
+
+input.title {
+  display: block;
+  font-size: 1.2em;
+  font-weight: normal;
+  padding: 3px;
+  width: 100%;
+}
+
+input:focus, textarea:focus { background: #FFFCE1; }
+
+textarea {
+  padding: 3px;
+  width: 100%;
+}
+
+/* label
+---------------------------------------------------------- */
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* notice & dialogs
+---------------------------------------------------------- */
+
+.dialog {
+  margin: 10px 0px 20px 0px;
+}
+
+/* tables
+---------------------------------------------------------- */
+
+table {
+  border-spacing: 0px;
+  width: 100%;
+  text-align: left;
+}
+
+table th {
+  color: #FFF;
+  font-weight: normal;
+  padding: 4px;
+}
+
+table th a {
+  color: #FFF!important;
+}
+
+table tr.even {
+  background: #FFF!important;
+}
+
+table tr.even:hover,
+table tr.odd:hover {
+  color: #FFF;
+  background: #000!important;
+}
+
+table tr.even:hover a,
+table tr.odd:hover a {
+  color: #FFF!important;
+}
+
+table tr.odd {
+  background: #F5F5F5;
+}
+
+table td {
+  border: none;
+  font-weight: normal;
+  padding: 3px 4px;
+  vertical-align: top;
+}
+
+table a,
+table a:link,
+table a:visited,
+table a:active {
+  font-weight: normal;
+}
+
+table a:hover {
+  color: black;
+}
+
+/* fieldsets
+---------------------------------------------------------- */
+
+fieldset {
+  border: 1px dotted #999;
+  padding: 10px;
+  margin: 0px 0px 20px 0px;
+}
+
+fieldset.on {
+  border: 1px solid #408BB6;
+}
+
+fieldset.on legend {
+  color: #408BB6;
+  text-transform: uppercase;
+}
+
+legend {
+  font-size: 15px;
+  padding: 0px 5px;
+}
+
+/* headings
+---------------------------------------------------------- */
+
+h2 {
+  margin: 0px 0px 20px 0px;
+}
+
+/* rails errors
+---------------------------------------------------------- */
+
+.formError {
+  color: green;
+  display: inline;
+}
+
+.fieldWithErrors input {
+  margin-top: -7px;
+  border: 1px solid #FBC2C4;
+  background: #FBE3E4;
+}
+
+.errorExplanation {
+  border: 2px solid #FBC2C4;
+  background: #FBE3E4;
+  color: #8a1f11;
+  padding: 0em 2px;
+  width: 100%;
+}
+
+.errorExplanation p { font-weight: bold; padding: 0px 5px;}
+
+.errorExplanation h3 { display: none;}
+.errorExplanation ul { margin-bottom: 10px; }
+.errorExplanation li { list-style: none; padding: 0px 5px; }
+
+/* searchbox
+---------------------------------------------------------- */
+
+.box {
+  border: 1px solid #D3D3D3;
+  padding: 5px 10px;
+}
+
+input#search {
+  padding: 3px;
+}
+
+/* dialog
+---------------------------------------------------------- */
+
+body#login {
+  background: #000;
+}
+
+div#dialog {
+  background: #FFF;
+  border: 0.35em solid #408BB6;
+  margin: 7.5em auto;
+  padding: 0.75em 1.25em;
+  width: 36em;
+}
+
+  div#dialog h1 {
+    color: #408BB6;
+    margin: 5px 0px 15px -5px;
+    padding: 0px 0px 0px 5px;
+    text-shadow: 1px 1px 0px #FFF;
+  }
+
+  div#dialog h1 a {
+    font-weight: bold;
+  }
+
+  #dialog h1 a:hover {
+    color: #408BB6;
+    background: transparent;
+  }
+
+  #dialog label {
+    margin: 0px 0px 3px 0px;
+  }
+
+  #dialog input {
+    margin: 0px 10px 10px 0px;
+  }
+
+  #dialog input.title {
+    font-size: 20px;
+    padding: 5px;
+    width: 21em;
+  }
+
+  #dialog #signature {
+    color: #FFF;
+    margin: 0px auto;
+    text-align: right;
+    width: 450px;
+  }
+
+/* pagination
+---------------------------------------------------------- */
+
+.pagination {
+  border-top: 1px solid #F5F5F5;
+  border-bottom: 1px solid #F5F5F5;
+  margin: 1.5em auto 0em auto;
+  padding: 1em;
+  text-align: center;
+}
+
+.pagination a {
+  color: #333;
+  margin: 2px;
+  padding: 2px 3px;
+  text-decoration: none;
+}
+.pagination a:hover,
+.pagination a:active {
+  color: #FFF;
+  background: #000;
+}
+.pagination span.current {
+  background-color: #408BB6;
+  color: #FFF;
+  font-weight: bold;
+  margin: 2px;
+  padding: 2px 3px;
+}
+
+.pagination span.disabled {
+  color: #DDD;
+  margin: 2px;
+  padding: 2px 3px;
+}
+
+/* Success, notice and error boxes
+-------------------------------------------------------------- */
+
+.error,
+.notice, 
+.success { 
+  border: 2px solid #DDD;
+  font-weight: bold;
+  margin-bottom: 1em;
+  padding: 0.8em 2px;
+  width: 100%;
+}
+
+.error p,
+.notice p, 
+.success p {
+  margin: 0px 5px 0px 5px!important;
+  padding: 0px!important;
+}
+
+.error {
+  background: #FBE3E4;
+  color: #8a1f11;
+  border-color: #FBC2C4;
+}
+
+.notice { 
+  background: #FFF6BF;
+  color: #514721;
+  border-color: #FFD324;
+}
+
+.success {
+  background: #E6EFC2;
+  color: #264409;
+  border-color: #C6D880;
+}
+
+.error a {
+  color: #8a1f11;
+}
+
+.notice a { 
+  color: #514721;
+}
+
+.success a {
+  color: #264409;
+}
+
+/* clear
+-------------------------------------------------------------- */
+
+.clear {
+  clear: both;
+}

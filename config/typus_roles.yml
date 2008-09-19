@@ -1,0 +1,5 @@
+admin:
+  TypusUser: rw
+  Language: rw
+  Pagina: rw
+  Paste: rw

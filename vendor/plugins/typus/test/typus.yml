@@ -1,0 +1,26 @@
+Post:
+  fields:
+    list: title, created_at, status
+    form: title, body, created_at, status
+    relationship: title, created_at
+  actions:
+    list: cleanup
+    form: send_as_newsletter, preview
+  related: categories
+  filters: status, created_at, category
+  search: title
+  order_by: title, -created_at
+  module: Blog
+
+TypusUser:
+  fields:
+    list: first_name, last_name, email, roles, status
+    form: first_name, last_name, email, roles, password, password_confirmation
+    relationship: first_name, last_name, roles, email, status
+  actions:
+    list:
+    form:
+  filters: status
+  search: first_name, last_name, email, roles
+  module: Typus
+  description: System Users Administration

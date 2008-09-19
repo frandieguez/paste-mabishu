@@ -1,0 +1,31 @@
+<% time = Time.now.to_s %>
+
+admin:
+  id: 1
+  email: admin@typus.org
+  first_name: Francesc
+  last_name: Esplugas
+  status: true
+  roles: admin
+  salt: <%= "--#{time}--admin@typus.org--" %>
+  crypted_password: <%= Digest::SHA1.hexdigest("----#{time}--admin@typus.org----#{12345678}") %>
+
+user:
+  id: 2
+  email: user@typus.org
+  first_name: Typus
+  last_name: User
+  status: true
+  roles: editor
+  salt: <%= "--#{time}--user@typus.org--" %>
+  crypted_password: <%= Digest::SHA1.hexdigest("----#{time}--user@typus.org----#{12345678}") %>
+
+disabled_user:
+  id: 3
+  email: disabled_user@typus.org
+  first_name: Typus
+  last_name: User
+  status: false
+  roles: editor
+  salt: <%= "--#{time}--disabled_user@typus.org--" %>
+  crypted_password: <%= Digest::SHA1.hexdigest("----#{time}--disabled_user@typus.org----#{12345678}") %>

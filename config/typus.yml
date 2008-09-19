@@ -1,0 +1,82 @@
+# ------------------------------------------------
+# Typus Admin Configuration File
+# ------------------------------------------------
+#
+# Post:
+#   fields:
+#     list: title, category_id, created_at, status
+#     form: title, body, status, created_at
+#     relationship: title, status
+#   actions:
+#     list: cleanup
+#     form: send_as_newsletter
+#   order_by: created_at
+#   relationships:
+#     has_and_belongs_to_many: 
+#     has_many: 
+#   filters: status, created_at, category_id
+#   search: title body
+#   application: Content
+#   description: Some text to describe the model
+#
+# ------------------------------------------------
+
+TypusUser:
+  fields:
+    list: first_name, last_name, email, roles, status
+    form: first_name, last_name, roles, email, password, password_confirmation
+  filters: status
+  search: first_name, last_name, email, roles
+  application: Administración de admins
+  description: Administración de Usuarios del Sistema
+
+Language:
+  fields:
+    list: name, extension, uv_name, mimetype
+    form: name, extension, uv_name, mimetype
+    relationship: name,  extension, uv_name, pastes_count, mimetype
+  actions:
+    list:
+    form:
+  order_by:
+  relationships:
+    has_and_belongs_to_many:
+    has_many: pastes
+  filters:
+  search: name
+  application: Gestion de Datos
+  description:
+
+Pagina:
+  fields:
+    list: title, link
+    form: title, content, link
+    relationship: created_at, title, updated_at, link
+  actions:
+    list:
+    form:
+  order_by:
+  relationships:
+    has_and_belongs_to_many:
+    has_many:
+  filters:
+  search: title, content, link
+  application: Gestion de Datos
+  description:
+
+Paste:
+  fields:
+    list: id, content, language_id
+    form: content, language_id
+    relationship: created_at, updated_at, language_id
+  actions:
+    list:
+    form:
+  order_by:
+  relationships:
+    has_and_belongs_to_many:
+    has_many:
+  filters: language_id
+  search: language, content
+  application: Gestion de Datos
+  description:

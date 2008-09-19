@@ -1,0 +1,4 @@
+test:
+  adapter: sqlite3
+  database: "/tmp/typus.sqlite3.db"
+  timeout: 5000
